@@ -2,7 +2,7 @@
 RewriteEngine On
 
 #Исключения
-RewriteRule ^open/(.*)$ - [L]
+RewriteRule ^assets/(.*)$ - [L]
 RewriteRule ^robots.txt$ - [L]
 RewriteRule ^test.php$ - [L]
 
