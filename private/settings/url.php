@@ -5,7 +5,7 @@
 		'url' => '/^api\/.*/',
 		'function' => function($name){
 			
-			require_once(DIR_ROOT . 'api/init_api.php');
+			require_once(DIR_ROOT . 'api/api.php');
 
 			CO::RE()->end();
 		}
