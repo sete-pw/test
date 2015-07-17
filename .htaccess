@@ -1,0 +1,24 @@
+# (C) SergeiTerehov.Art 2014-2015
+RewriteEngine On
+
+#Исключения
+RewriteRule ^open/(.*)$ - [L]
+RewriteRule ^robots.txt$ - [L]
+RewriteRule ^test.php$ - [L]
+
+
+#Перенаправление в один входной скрипт
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+
+
+
+#Таймаут ожидания ответа
+php_value max_execution_time 10
+
+
+
+#Отображение ошибок error_reporting(E_ALL)
+#php_flag display_errors on
+#php_value error_reporting 2047
+
