@@ -1,8 +1,7 @@
 <?
-	header('Content-Type: text/html charset=windows-1251');
-
-	require_once(DIR_ROOT . 'co.php');
+	
+	require_once(DIR_ROOT . 'libs/co.php');
 	CO::RE();
-	require_once(DIR_ROOT . 'init.php');
+	require_once(DIR_ROOT . 'settings/init.php');
 	CO::RE()->end();
 	

@@ -1,9 +1,21 @@
 <?
 	namespace SQL;
 
+	/**
+	 * Реализует взаимодействие с MySQL
+	 * @author Сергей Терехов
+	 */
 	class DATA{
+		/**
+		 * Экземпляр соединения с базой данных
+		 * @var mysqli
+		 */
 		private $connect;
-		
+		/**
+		 * Возвращяет строку в виде ассоциативного массива
+		 * @param  stmt Запрос
+		 * @return array
+		 */
 		private function stmtRowAssoc (&$stmt){
 			if($stmt instanceof \mysqli_stmt){
 				$data = mysqli_stmt_result_metadata($stmt);
@@ -31,7 +43,13 @@
 				return false;
 			}
 		}
-
+		/**
+		 * Выполняет запрос в базу и возвращает результат в виде ассоциативного массива
+		 * @param  string Запрос для prepare
+		 * @param  array Переменные запроса [type => value]
+		 * @param  string Поле для индекса массива
+		 * @return array
+		 */
 		public function query($query, $vars = null, $fieldArrayIndex = false){
 			$stmt = $this->connect->prepare($query);
 			
@@ -77,23 +95,40 @@
 				return false;
 			}
 		}
-		
+		/**
+		 * Возвращает идентификатор вставленной записи
+		 * @return number
+		 */
 		public function iid(){
 			return $this->connect->insert_id;
 		}
-
+		/**
+		 * Возвращает информацию об ошибке
+		 * @return string
+		 */
 		public function error(){
 			return $this->connect->error;
 		}
-		
-		public function connect($host = 'localhost', $user = '', $passwd = '', $dbName = 'test'){
+		/**
+		 * Выполняет подключение к базе данных
+		 * @param  string Адрес сервера
+		 * @param  string Имя пользователя
+		 * @param  string Пароль пользователя
+		 * @param  string База данных по умолчанию = information_schema
+		 */
+		public function connect($host = 'localhost', $user = '', $passwd = '', $dbName = 'information_schema'){
 			$this->connect = mysqli_connect($host, $user, $passwd, $dbName);
 		}
-		
+		/**
+		 * Изменяет выбранную базу данных
+		 * @param  string Имя базы данных
+		 */
 		public function dbSelect($dbName){
 			$this->connect->select_db($dbName);
 		}
-		
+		/**
+		 * Разрывает соединение с базой данных
+		 */
 		public function disconnect(){
 			$this->connect->close();
 		}
