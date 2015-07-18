@@ -41,8 +41,11 @@
 				<li><a href="#shop">Заказать Онлайн</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right nav-pills">
-				<li><a href="#login" data-toggle="modal">Войти</a></li>
-				
+				<!-- ОДНО ИЗ ДВУХ ДОЛЖНО БЫТЬ -->
+				<? 
+					if(isset(CO::RE()->get['login'])){
+				?>
+				<li><a href="#bin"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина <span class="badge">0</span></a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ИмяКлиента<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -52,8 +55,18 @@
 					</ul>
 				</li>
 				
-				<li><a href="#bin"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина <span class="badge">0</span></a></li>
-				<li><a href="#admin">Админка</a></li>
+				<!-- ОПРЕДЕЛИТЬ КАК ЧАСТНЫЙ СЛУЧАЙ -->
+				<li><a href="#admin">Управление</a></li>
+				<?
+					} else {
+				?>
+				<li><a href="#login" data-toggle="modal">Войти</a></li>
+				<? 
+					} 
+				?>
+				<!-- ОДНО ИЗ ДВУХ ДОЛЖНО БЫТЬ -->
+				
+				
 							
 				
 			</ul>
@@ -91,7 +104,7 @@
 						<div class="form-group">
 							<div class="col-lg-10 col-lg-offset-2">
 								<button type="submit" class="btn btn-primary"> Войти </button>
-								<a class="btn btn-info" href="#reg" data-toggle="modal">Регистрация</a>
+								<a class="btn btn-info" href="#reg">Регистрация</a>
 							</div>
 						</div>
 					</fieldset>
@@ -101,80 +114,14 @@
 	</div>
 </div>
 
-<div class="modal fade" id="registrat" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-				<h4 class="modal-title">Регистрация</h4>
-			</div>
-			<div class="modal-body">		
-				<form class="form-horizontal">
-					<fieldset>
-						<div class="form-group">
-							<label for="inputEmail" class="col-lg-2 control-label">Email</label>
-							<div class="col-lg-10">
-								<input class="form-control" id="inputEmail" placeholder="Email" type="text">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputPassword" class="col-lg-2 control-label">Пароль</label>
-							<div class="col-lg-10">
-								<input class="form-control" id="inputPassword" placeholder="Пароль" type="password">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-lg-10 col-lg-offset-2">
-								<button type="submit" class="btn btn-primary"> Зарегистрироваться </button>
-							</div>
-						</div>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-  <div class="content" style="height:1000px;">
+<div class="content" style="height:1000px;">
   
-  </div>
+</div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../../assets/libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../assets/libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
-	<?/*
-
-<h1>
-<?
-	CO::RE()->name = 'Test project';
-
-	CO::RE()->hello = function(){
-		echo 'Hello, this is ' . CO::RE()->name . '!';
-	};
-
-	CO::RE()->hello();
-?>
-</h1>
-
-
-
-<?
-	if(isset(CO::RE()->get['login'])){
-?>
-		РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р°РІС‚РѕСЂРёР·РѕРІР°РЅ
-<?
-	}else{
-?>
-		РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ <strong>РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅ</strong>
-<?
-	}
-?>
-
-*/?>
-	
   </body>
 </html>
