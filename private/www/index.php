@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!--<meta charset="utf-8">-->
+    <meta charset="windows-1251">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Какой-то магаз</title>
+    <title>Столики онлайн</title>
 
     <!-- Bootstrap -->
     <link href="../../assets/libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -44,6 +44,7 @@
 				<!-- ОДНО ИЗ ДВУХ ДОЛЖНО БЫТЬ -->
 				<? 
 					if(isset(CO::RE()->get['login'])){
+						if(!(isset(CO::RE()->get['admin']))){
 				?>
 				<li><a href="#bin"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина <span class="badge">0</span></a></li>
 				<li class="dropdown">
@@ -54,10 +55,22 @@
 						<li><a href="#logout">Выйти</a></li>
 					</ul>
 				</li>
-				
-				<!-- ОПРЕДЕЛИТЬ КАК ЧАСТНЫЙ СЛУЧАЙ -->
-				<li><a href="#admin">Управление</a></li>
 				<?
+						} else {
+				?>
+				<!-- ОПРЕДЕЛИТЬ КАК ЧАСТНЫЙ СЛУЧАЙ -->
+				<li><a href="#bin"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина <span class="badge">0</span></a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ИмяКлиента<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="#settings"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
+						<li><a href="#admin"><span class="glyphicon glyphicon-wrench"></span> Управление</a></li>
+						<li class="divider"></li>
+						<li><a href="#logout"><span class="glyphicon glyphicon-remove"></span> Выйти</a></li>
+					</ul>
+				</li>
+				<?
+						}
 					} else {
 				?>
 				<li><a href="#login" data-toggle="modal">Войти</a></li>
