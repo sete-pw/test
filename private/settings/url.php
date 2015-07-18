@@ -17,7 +17,47 @@
 		'function' => function(){
 
 			include DIR_ROOT . 'www/index.php';
+
+		}
+	]);
+
+
+
+
+	// Действия
+	CO::RE()->PUSH('action', [
+		'url' => '/^login/',
+		'function' => function(){
 			
+			$res = CO::AUTH()->login([
+				'email' => CO::RE()->post['email'],
+				'passwd' => CO::RE()->post['passwd']
+			]);
+
+			echo $res ? 'OK' : 'ERROR';
+
+		}
+	]);
+
+
+
+
+	CO::RE()->PUSH('action', [
+		'url' => '/^md5User/',
+		'function' => function(){
+			
+			echo CO::AUTH()->getUserHash(CO::RE()->get['id'], CO::RE()->get['passwd']);
+
+		}
+	]);
+	CO::RE()->PUSH('action', [
+		'url' => '/^userAccess/',
+		'function' => function(){
+			
+			var_dump(CO::AUTH()->unknown());
+			var_dump(CO::AUTH()->user());
+			var_dump(CO::AUTH()->admin());
+
 		}
 	]);
 
