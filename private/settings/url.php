@@ -40,6 +40,19 @@
 
 		}
 	]);
+	/**
+	 * Выход
+	 */
+	CO::RE()->PUSH('action', [
+		'url' => '/^logout/',
+		'function' => function(){
+			
+			CO::AUTH()->logout();
+
+			CO::RE()->redirect('/');
+
+		}
+	]);
 
 
 
