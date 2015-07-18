@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="windows-1251">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,44 +44,30 @@
 				<!-- ОДНО ИЗ ДВУХ ДОЛЖНО БЫТЬ -->
 				<? 
 					if(isset(CO::RE()->get['login'])){
-						if(!(isset(CO::RE()->get['admin']))){
 				?>
-				<li><a href="#bin"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина <span class="badge">0</span></a></li>
+				<li><a href="#bin" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина <span class="badge">0</span></a></li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ИмяКлиента<span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> ИмяКлиента<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#settings"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
-						<li class="divider"></li>
-						<li><a href="#logout">Выйти</a></li>
-					</ul>
-				</li>
+				<?	
+						if(isset(CO::RE()->get['admin'])){//если админ то добавить пункт меню
+				?>				
+				<li><a href="#admin"><span class="glyphicon glyphicon-wrench"></span> Управление</a></li>
 				<?
-						} else {
+						}
 				?>
-				<!-- ОПРЕДЕЛИТЬ КАК ЧАСТНЫЙ СЛУЧАЙ -->
-				<li><a href="#bin"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина <span class="badge">0</span></a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ИмяКлиента<span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#settings"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
-						<li><a href="#admin"><span class="glyphicon glyphicon-wrench"></span> Управление</a></li>
 						<li class="divider"></li>
 						<li><a href="#logout"><span class="glyphicon glyphicon-remove"></span> Выйти</a></li>
 					</ul>
 				</li>
 				<?
-						}
 					} else {
 				?>
 				<li><a href="#login" data-toggle="modal">Войти</a></li>
 				<? 
 					} 
 				?>
-				<!-- ОДНО ИЗ ДВУХ ДОЛЖНО БЫТЬ -->
-				
-				
-							
-				
 			</ul>
 		</div>
 	</div>
@@ -107,11 +93,6 @@
 							<label for="inputPassword" class="col-lg-2 control-label">Пароль</label>
 							<div class="col-lg-10">
 								<input class="form-control" id="inputPassword" placeholder="Пароль" type="password">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox"> Запомнить
-									</label>
-								</div>
 							</div>
 						</div>
 						<div class="form-group">
@@ -122,6 +103,92 @@
 						</div>
 					</fieldset>
 				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="bin" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+				<h4 class="modal-title">Корзина</h4>
+			</div>
+			<div class="modal-body">		
+				<?/*Номер заказа; Номер столика; номер места; положение (типа Третий ряд, четвертый стул); стоимость; кнопка Удалить*/?>
+				<table class="table table-striped table-hover ">
+					<thead>
+						<tr>
+							<th>Номер Заказа</th>
+							<th>Номер столика</th>
+							<th>Номер места</th>
+							<th>Положение</th>
+							<th>Стоимость</th>
+							<th>Операции</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1488</td>
+							<td>13</td>
+							<td>2</td>
+							<td>3 ряд, 4 место</td>
+							<td>2500 р.</td>
+							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+						</tr>
+						<tr>
+							<td>1488</td>
+							<td>13</td>
+							<td>2</td>
+							<td>3 ряд, 4 место</td>
+							<td>2500 р.</td>
+							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+						</tr>
+						<tr>
+							<td>1488</td>
+							<td>13</td>
+							<td>2</td>
+							<td>3 ряд, 4 место</td>
+							<td>2500 р.</td>
+							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+						</tr>
+						<tr>
+							<td>1488</td>
+							<td>13</td>
+							<td>2</td>
+							<td>3 ряд, 4 место</td>
+							<td>2500 р.</td>
+							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+						</tr>
+						<tr>
+							<td>1488</td>
+							<td>13</td>
+							<td>2</td>
+							<td>3 ряд, 4 место</td>
+							<td>2500 р.</td>
+							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+						</tr>
+						<tr>
+							<td>1488</td>
+							<td>13</td>
+							<td>2</td>
+							<td>3 ряд, 4 место</td>
+							<td>2500 р.</td>
+							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+						</tr>
+						<tr>
+							<td>1488</td>
+							<td>13</td>
+							<td>2</td>
+							<td>3 ряд, 4 место</td>
+							<td>2500 р.</td>
+							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+						</tr>
+					</tbody>
+				</table> 
+				
 			</div>
 		</div>
 	</div>
