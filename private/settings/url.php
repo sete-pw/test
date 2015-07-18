@@ -24,6 +24,24 @@
 
 
 
+	// Действия
+	CO::RE()->PUSH('action', [
+		'url' => '/^login/',
+		'function' => function(){
+			
+			$res = CO::AUTH()->login([
+				'email' => CO::RE()->post['email'],
+				'passwd' => CO::RE()->post['passwd']
+			]);
+
+			echo $res ? 'OK' : 'ERROR';
+
+		}
+	]);
+
+
+
+
 	CO::RE()->PUSH('action', [
 		'url' => '/^md5User/',
 		'function' => function(){

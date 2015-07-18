@@ -114,7 +114,7 @@ limit 1;
 		 * @return array
 		 */
 		public function getUserByEmail($email){
-			$user = $this->query("
+			$user = $this->sql->query("
 select *
 from users
 where
