@@ -58,7 +58,7 @@
 						}
 				?>
 						<li class="divider"></li>
-						<li><a href="#logout"><span class="glyphicon glyphicon-remove"></span> Выйти</a></li>
+						<li><a href="/logout"><span class="glyphicon glyphicon-remove"></span> Выйти</a></li>
 					</ul>
 				</li>
 				<?
@@ -134,57 +134,67 @@
 							<td>1488</td>
 							<td>13</td>
 							<td>2</td>
-							<td>3 ряд, 4 место</td>
-							<td>2500 р.</td>
+							<td>3 ряд,<br> 4 место</td>
+							<td>2500 руб.</td>
 							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
 						</tr>
 						<tr>
 							<td>1488</td>
 							<td>13</td>
 							<td>2</td>
-							<td>3 ряд, 4 место</td>
-							<td>2500 р.</td>
+							<td>3 ряд,<br> 4 место</td>
+							<td>2500 руб.</td>
 							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
 						</tr>
 						<tr>
 							<td>1488</td>
 							<td>13</td>
 							<td>2</td>
-							<td>3 ряд, 4 место</td>
-							<td>2500 р.</td>
+							<td>3 ряд,<br> 4 место</td>
+							<td>2500 руб.</td>
 							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
 						</tr>
 						<tr>
 							<td>1488</td>
 							<td>13</td>
 							<td>2</td>
-							<td>3 ряд, 4 место</td>
-							<td>2500 р.</td>
+							<td>3 ряд,<br> 4 место</td>
+							<td>2500 руб.</td>
 							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
 						</tr>
 						<tr>
 							<td>1488</td>
 							<td>13</td>
 							<td>2</td>
-							<td>3 ряд, 4 место</td>
-							<td>2500 р.</td>
+							<td>3 ряд,<br> 4 место</td>
+							<td>2500 руб.</td>
 							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
 						</tr>
 						<tr>
 							<td>1488</td>
 							<td>13</td>
 							<td>2</td>
-							<td>3 ряд, 4 место</td>
-							<td>2500 р.</td>
+							<td>3 ряд,<br> 4 место</td>
+							<td>2500 руб.</td>
 							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
 						</tr>
 						<tr>
 							<td>1488</td>
 							<td>13</td>
 							<td>2</td>
-							<td>3 ряд, 4 место</td>
-							<td>2500 р.</td>
+							<td>3 ряд,<br> 4 место</td>
+							<td>2500 руб.</td>
 							<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<td>ИТОГО</td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td>17500 руб.</td>
+							<td><a href="#del_row" class="text-danger" title="Удалить Всё"><span class="glyphicon glyphicon-remove"></span></td>
 						</tr>
 					</tbody>
 				</table> 
