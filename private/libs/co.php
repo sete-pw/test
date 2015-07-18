@@ -30,7 +30,7 @@
 					}
 					foreach ($this->cookie as $key => $value) {
 						if(!isset($_COOKIE[$key]) || $_COOKIE[$key] != $value){
-							setcookie($value);
+							setcookie($key, $value);
 						}
 					}
 				}

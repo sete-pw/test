@@ -20,8 +20,10 @@
 				$user = $e->getUserByEmail($args['email']);
 
 				if($user){
+					$passwd = CO::AUTH()->getUserHash($user['id_user'], $args['passwd']);
+
 					CO::RE()->PUSH('cookie', $user['id_user'], 'authid');
-					CO::RE()->PUSH('cookie', $args['passwd'], 'authsh');
+					CO::RE()->PUSH('cookie', $passwd, 'authsh');
 				}
 			},
 			// Logout

@@ -30,11 +30,11 @@
 		'function' => function(){
 			
 			$res = CO::AUTH()->login([
-				'email' => CO::RE()->post['email'],
-				'passwd' => CO::RE()->post['passwd']
+				'email' => CO::RE()->get['email'],
+				'passwd' => CO::RE()->get['passwd']
 			]);
 
-			echo $res ? 'OK' : 'ERROR';
+			CO::RE()->redirect('/');
 
 		}
 	]);
