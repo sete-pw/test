@@ -7,6 +7,7 @@
 
 	
 	require_once(DIR_ROOT . 'libs/db.php'); // Соединение с MySQL
+	require_once(DIR_ROOT . 'libs/authorize.php'); // Авторизация пользователей
 	
 
 
@@ -17,6 +18,7 @@
 
 	require_once(DIR_ROOT . 'settings/mysql.php'); // Подключение к MySQL
 	require_once(DIR_ROOT . 'settings/url.php'); // Пути URL
+	require_once(DIR_ROOT . 'settings/authorize.php'); // Авторизация пользователей
 
 
 	/**

@@ -12,6 +12,11 @@
 		 */
 		private $connect;
 		/**
+		 * Соединение с базой установленно?
+		 * @var boolean
+		 */
+		private $connected = false;
+		/**
 		 * Возвращяет строку в виде ассоциативного массива
 		 * @param  stmt Запрос
 		 * @return array
@@ -118,6 +123,16 @@
 		 */
 		public function connect($host = 'localhost', $user = '', $passwd = '', $dbName = 'information_schema'){
 			$this->connect = mysqli_connect($host, $user, $passwd, $dbName);
+			if($this->connect){
+				$this->connected = true;
+			}
+		}
+		/**
+		 * Проверяет установленно ли соединение с базой
+		 * @return boolean
+		 */
+		public function isConnect(){
+			return $this->connected;
 		}
 		/**
 		 * Изменяет выбранную базу данных
