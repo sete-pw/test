@@ -15,11 +15,9 @@
 	CO::RE()->PUSH('action', [
 		'url' => '/^$/',
 		'function' => function(){
-			CO::RE()->name = 'Test project';
-			CO::RE()->hello = function(){
-				echo 'Hello, this is ' . CO::RE()->name . '!';
-			};
-			CO::RE()->hello();
+
+			include DIR_ROOT . 'www/index.php';
+			
 		}
 	]);
 
