@@ -24,14 +24,16 @@
 
 
 
-	// Действия
+	/**
+	 * Авторизация
+	 */
 	CO::RE()->PUSH('action', [
 		'url' => '/^login/',
 		'function' => function(){
 			
-			$res = CO::AUTH()->login([
-				'email' => CO::RE()->get['email'],
-				'passwd' => CO::RE()->get['passwd']
+			CO::AUTH()->login([
+				'email' => CO::RE()->post['email'],
+				'passwd' => CO::RE()->post['passwd']
 			]);
 
 			CO::RE()->redirect('/');
@@ -41,22 +43,12 @@
 
 
 
-
+	// Получить хеш для юзера
 	CO::RE()->PUSH('action', [
 		'url' => '/^md5User/',
 		'function' => function(){
 			
 			echo CO::AUTH()->getUserHash(CO::RE()->get['id'], CO::RE()->get['passwd']);
-
-		}
-	]);
-	CO::RE()->PUSH('action', [
-		'url' => '/^userAccess/',
-		'function' => function(){
-			
-			var_dump(CO::AUTH()->unknown());
-			var_dump(CO::AUTH()->user());
-			var_dump(CO::AUTH()->admin());
 
 		}
 	]);
