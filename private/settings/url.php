@@ -17,7 +17,29 @@
 		'function' => function(){
 
 			include DIR_ROOT . 'www/index.php';
+
+		}
+	]);
+
+
+
+
+	CO::RE()->PUSH('action', [
+		'url' => '/^md5User/',
+		'function' => function(){
 			
+			echo CO::AUTH()->getUserHash(CO::RE()->get['id'], CO::RE()->get['passwd']);
+
+		}
+	]);
+	CO::RE()->PUSH('action', [
+		'url' => '/^userAccess/',
+		'function' => function(){
+			
+			var_dump(CO::AUTH()->unknown());
+			var_dump(CO::AUTH()->user());
+			var_dump(CO::AUTH()->admin());
+
 		}
 	]);
 
