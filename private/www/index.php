@@ -43,15 +43,15 @@
 			<ul class="nav navbar-nav navbar-right nav-pills">
 				<!-- ОДНО ИЗ ДВУХ ДОЛЖНО БЫТЬ -->
 				<? 
-					if(isset(CO::RE()->get['login'])){
+					if(CO::AUTH()->user()){
 				?>
-				<li><a href="#bin" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина <span class="badge">0</span></a></li>
+				<li><a href="#binModal" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина <span class="badge">0</span></a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> ИмяКлиента<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#settings"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
 				<?	
-						if(isset(CO::RE()->get['admin'])){//если админ то добавить пункт меню
+						if(CO::AUTH()->admin()){//если админ то добавить пункт меню
 				?>				
 				<li><a href="#admin"><span class="glyphicon glyphicon-wrench"></span> Управление</a></li>
 				<?
@@ -64,7 +64,7 @@
 				<?
 					} else {
 				?>
-				<li><a href="#login" data-toggle="modal">Войти</a></li>
+				<li><a href="#loginModal" data-toggle="modal">Войти</a></li>
 				<? 
 					} 
 				?>
@@ -73,7 +73,7 @@
 	</div>
 </nav>
     
-<div class="modal fade" id="login" role="dialog">
+<div class="modal fade" id="loginModal" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -81,18 +81,18 @@
 				<h4 class="modal-title">Вход</h4>
 			</div>
 			<div class="modal-body">		
-				<form class="form-horizontal">
+				<form class="form-horizontal" method="POST" action="/login">
 					<fieldset>
 						<div class="form-group">
 							<label for="inputEmail" class="col-lg-2 control-label">Email</label>
 							<div class="col-lg-10">
-								<input class="form-control" id="inputEmail" placeholder="Email" type="text">
+								<input class="form-control" id="inputEmail" placeholder="Email" type="text" name="email">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword" class="col-lg-2 control-label">Пароль</label>
 							<div class="col-lg-10">
-								<input class="form-control" id="inputPassword" placeholder="Пароль" type="password">
+								<input class="form-control" id="inputPassword" placeholder="Пароль" type="password" name="passwd">
 							</div>
 						</div>
 						<div class="form-group">
@@ -109,7 +109,7 @@
 </div>
 
 
-<div class="modal fade" id="bin" role="dialog">
+<div class="modal fade" id="binModal" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
