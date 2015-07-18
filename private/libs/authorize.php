@@ -122,7 +122,7 @@ where
 limit 1;
 			", [
 				['s', $email]
-			])
+			]);
 
 			return $user[0];
 		}

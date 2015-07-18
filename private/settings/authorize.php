@@ -23,7 +23,7 @@
 					CO::RE()->PUSH('cookie', $user['id_user'], 'authid');
 					CO::RE()->PUSH('cookie', $args['passwd'], 'authsh');
 				}
-			}
+			},
 			// Logout
 			function($e, $args){
 				CO::RE()->PUSH('cookie', '', 'authid');
