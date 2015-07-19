@@ -33,7 +33,7 @@
         //Вызов метода по переданым параметрам из конструктора
         function callMethod(){
             $resultMethod = $this->createJSON();
-            $apiName = stripcslashes($this->apiFunctionName['class']);
+            $apiName = stripcslashes($this->apiFunctionName['method']);
             $status = ApiConstants::$STATUS;
             echo $apiName;
             if (file_exists(DIR_ROOT.'api/methods/'.$apiName.'.php')){
@@ -41,7 +41,7 @@
                 $apiReflection = new ReflectionClass($apiName);
 
                 try{
-                    $functionName = $this->apiFunctionName['method'];
+                    $functionName = $this->apiFunctionName['class'];
                     $apiReflection->getMethod($functionName); //Проверка метода
                     $jsonParams = json_decode($this->apiFunctionParams);
                         if ($jsonParams){
