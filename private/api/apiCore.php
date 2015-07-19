@@ -12,6 +12,7 @@
         function __construct($apiFunctionName, $apiFunctionParams){
             $this->apiFunctionParams = stripcslashes($apiFunctionParams);
             $this->apiFunctionName = explode('.', $apiFunctionName);
+            print_r($this->apiFunctionName);
         }
 
         function createJSON()
