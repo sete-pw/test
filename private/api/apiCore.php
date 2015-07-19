@@ -6,11 +6,11 @@
     class ApiCore{
 
         private $apiFunctionName;
-        private $apiFunctionParams; //Json в строковом представлении
+        private $apiFunctionParams;
 
 
         function __construct($apiFunctionName, $apiFunctionParams){
-            $this->apiFunctionParams = stripcslashes($apiFunctionParams);
+            $this->apiFunctionParams = $apiFunctionParams;
             $this->apiFunctionName = $apiFunctionName;
         }
 
@@ -35,9 +35,11 @@
             $resultMethod = $this->createJSON();
             $apiName = stripcslashes($this->apiFunctionName['class']);
             $status = ApiConstants::$STATUS;
+            echo '1';
             if (file_exists(DIR_ROOT.'api/methods/'.$apiName.'.php')){
                 $apiClass = ApiCore::getApiEngineByName($apiName);
                 $apiReflection = new ReflectionClass($apiName);
+                echo '2';
                 try{
                     $functionName = $this->apiFunctionName['method'];
                     $apiReflection->getMethod($functionName); //ѕроверка метода
