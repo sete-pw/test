@@ -19,8 +19,8 @@
 		<link href="../../assets/css/custom-style.css" rel="stylesheet">
 	</head>
 	<body>
-		<nav class="container navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="container-fluid">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>
@@ -60,7 +60,7 @@
 						<?
 							} else {
 						?>
-						<li><a href="#loginModal" data-toggle="modal"><span class="glyphicon glyphicon-lock"></span> Войти</a></li>
+						<li><a href="#loginModal" data-toggle="modal" class="text-success"> <span class="glyphicon glyphicon-lock text-success"></span> Войти </a></li>
 						<? 
 							} 
 						?>
@@ -214,13 +214,16 @@
 		</div>
 		
 		<div class="container" id="content">
-    		
+    	<?
+			if(CO::AUTH()->admin()){//если админ или юзер то добавить
+		?>
 			<!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
 			<h1>ПАНЕЛЬ УПРАВЛЕНИЯ</h1>
 			<table class="table table-striped table-hover ">
 				<thead>
 					<tr>
 						<th>Номер Заказа</th>
+						<th>Клиент</th>
 						<th>Номер столика</th>
 						<th>Номер места</th>
 						<th>Положение</th>
@@ -231,6 +234,7 @@
 				<tbody>
 					<tr>
 						<td>1488</td>
+						<td>ИмяКлиента</td>
 						<td>13</td>
 						<td>2</td>
 						<td>3 ряд, 4 место</td>
@@ -239,6 +243,7 @@
 					</tr>
 					<tr>
 						<td>1488</td>
+						<td>ИмяКлиента</td>
 						<td>13</td>
 						<td>2</td>
 						<td>3 ряд, 4 место</td>
@@ -247,6 +252,7 @@
 					</tr>
 					<tr>
 						<td>1488</td>
+						<td>ИмяКлиента</td>
 						<td>13</td>
 						<td>2</td>
 						<td>3 ряд, 4 место</td>
@@ -260,12 +266,16 @@
 						<td> </td>
 						<td> </td>
 						<td> </td>
+						<td> </td>
 						<td>7500 руб.</td>
 						<td><a href="#del_all" class="text-danger" title="Удалить Всё"><span class="glyphicon glyphicon-remove"></span></td>
 					</tr>
 				</tbody>
 			</table>
 			<!-- END ПАНЕЛЬ УПРАВЛЕНИЯ -->
+		<?
+			}
+		?>
 		</div>
 		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
