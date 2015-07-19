@@ -5,7 +5,7 @@ class table extends apiBaseClass{
 
         $returnRequest = CO::SQL()->query('SELECT * FROM users');
         $retJson = $this->fillJson($returnRequest, $retJson);
-        print_r($retJson);
+        
         return $retJson;
     }
 
