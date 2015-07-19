@@ -5,7 +5,8 @@ class table extends apiBaseClass{
 
         $returnRequest = CO::SQL()->query('SELECT * FROM tables');
         $retJson = $this->fillJson($returnRequest, $retJson);
-        return $retJson;
+        if (isset($retJson['0'])) return $retJson;
+        else return null;
     }
 
     function setList($JsonParams){
