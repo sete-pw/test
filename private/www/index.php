@@ -16,10 +16,76 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		<link href="../../assets/css/custom-style.css" rel="stylesheet">
+		
+		
+		
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+		<!-- jQuery UI CSS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../../assets/libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+		
+		<!--SORT TABLE in panel admininstrator-->
+		<script href="../../assets/js/sort-table.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	//Helper function to keep table row from collapsing when being sorted
+	var fixHelperModified = function(e, tr) {
+		var $originals = tr.children();
+		var $helper = tr.clone();
+		$helper.children().each(function(index)
+		{
+		  $(this).width($originals.eq(index).width())
+		});
+		return $helper;
+	};
+
+	//Make diagnosis table sortable
+	$("#diagnosis_list tbody").sortable({
+    	helper: fixHelperModified,
+		stop: function(event,ui) {renumber_table('#diagnosis_list')}
+	}).disableSelection();
+
+
+	//Delete button in table rows
+	$('table').on('click','.btn-delete',function() {
+		tableID = '#' + $(this).closest('table').attr('id');
+		r = confirm('Delete this item?');
+		if(r) {
+			$(this).closest('tr').remove();
+			renumber_table(tableID);
+			}
+	});
+
+});
+
+//Renumber table rows
+function renumber_table(tableID) {
+	$(tableID + " tr").each(function() {
+		count = $(this).parent().children().index($(this)) + 1;
+		$(this).find('.priority').html(count);
+	});
+}
+
+
+</script>
+<style type="text/css">
+.ui-sortable tr {
+	cursor:pointer;
+}
+		
+.ui-sortable tr:hover {
+	background:rgba(244,251,17,0.45);
+}
+</style>
+		
 	</head>
 	<body>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -219,7 +285,7 @@
 		?>
 			<!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
 			<h1>ПАНЕЛЬ УПРАВЛЕНИЯ</h1>
-			<table class="table table-striped table-hover ">
+			<table class="table" id="diagnosis_list">
 				<thead>
 					<tr>
 						<th>Номер Заказа</th>
@@ -242,21 +308,21 @@
 						<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a> &nbsp; <a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Редактировать"><span class="glyphicon glyphicon-file"></span></a> </td>
 					</tr>
 					<tr>
-						<td>1488</td>
+						<td>1499</td>
 						<td>ИмяКлиента</td>
 						<td>13</td>
 						<td>2</td>
 						<td>3 ряд, 4 место</td>
-						<td>2500 руб.</td>
+						<td>3000 руб.</td>
 						<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a> &nbsp; <a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Редактировать"><span class="glyphicon glyphicon-file"></span></a></td>
 					</tr>
 					<tr>
-						<td>1488</td>
+						<td>1349</td>
 						<td>ИмяКлиента</td>
 						<td>13</td>
 						<td>2</td>
 						<td>3 ряд, 4 место</td>
-						<td>2500 руб.</td>
+						<td>1666 руб.</td>
 						<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a> &nbsp; <a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Редактировать"><span class="glyphicon glyphicon-file"></span></a></td>
 					</tr>
 				</tbody>
@@ -267,7 +333,7 @@
 						<td> </td>
 						<td> </td>
 						<td> </td>
-						<td>7500 руб.</td>
+						<td>7166 руб.</td>
 						<td><a href="#del_all" class="text-danger" title="Удалить Всё"><span class="glyphicon glyphicon-remove"></span></td>
 					</tr>
 				</tbody>
@@ -277,10 +343,5 @@
 			}
 		?>
 		</div>
-		
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="../../assets/libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 	</body>
 </html>
