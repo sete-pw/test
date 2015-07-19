@@ -12,7 +12,6 @@
         function __construct($apiFunctionName, $apiFunctionParams){
             $this->apiFunctionParams = stripcslashes($apiFunctionParams);
             $this->apiFunctionName = explode('.', $apiFunctionName);
-            print_r($this->apiFunctionName);
         }
 
         function createJSON()
@@ -26,7 +25,7 @@
         //Подключение api
         static function getApiEngineByName($apiName) {
             require_once DIR_ROOT . 'api/apiBaseClass.php';
-            require_once DIR_ROOT .'api/methods/'. $apiName .'php';
+            require_once DIR_ROOT .'api/methods/'. $apiName .'.php';
             $apiClass = new $apiName();
             return $apiClass;
         }
