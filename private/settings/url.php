@@ -25,6 +25,33 @@
 
 		}
 	]);
+	// Shop
+	CO::RE()->PUSH('action', [
+		'url' => '/^shop$/',
+		'function' => function(){
+
+			include DIR_ROOT . 'www/shop.php';
+
+		}
+	]);
+	// user
+	CO::RE()->PUSH('action', [
+		'url' => '/^user$/',
+		'function' => function(){
+
+			include DIR_ROOT . 'www/user.php';
+
+		}
+	]);
+	// admin
+	CO::RE()->PUSH('action', [
+		'url' => '/^admin$/',
+		'function' => function(){
+
+			include DIR_ROOT . 'www/admin.php';
+
+		}
+	]);
 
 
 
