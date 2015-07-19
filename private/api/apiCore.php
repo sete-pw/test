@@ -34,7 +34,7 @@
         function callMethod(){
             $resultMethod = $this->createJSON();
             $apiName = stripcslashes($this->apiFunctionName[0]);
-
+            $status = ApiConstants::$STATUS;
             if (file_exists(DIR_ROOT.'api/methods/'.$apiName.'.php')){
                 $apiClass = ApiCore::getApiEngineByName($apiName);
                 $apiReflection = new ReflectionClass($apiName);
@@ -42,16 +42,18 @@
                     $functionName = $this->apiFunctionName[1];
                     $apiReflection->getMethod($functionName); //Проверка метода
                     $jsonParams = json_decode($this->apiFunctionParams);
-                    if ($jsonParams){
+                        if ($jsonParams){
                         $response = ApiConstants::$RESPONSE;
                         $resultMethod->$response = $apiClass->$functionName($jsonParams);
+                        $resultMethod->$status = ApiConstants::$ERROR_NO;
                     }
                     else{
-                        $resultMethod->errNum = ApiConstants::$ERROR_ENGINE_PARAMS;
+                        $resultMethod->$status = ApiConstants::$ERROR_ENGINE_PARAMS;
                         $resultMethod->errStr = 'Error given params';
                     }
                 }
                 catch(Exception $ex) {
+
                     $resultMethod->errStr = $ex->getMessage();
                 }
             }

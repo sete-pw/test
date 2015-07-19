@@ -8,6 +8,9 @@
         //Ответ (параметр)
         public static $RESPONSE = "response";
 
+        //Статус ответ
+        public static $STATUS = "status";
+
         //Ошибок нет
         public static  $ERROR_NO = 0;
 
