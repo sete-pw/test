@@ -2,27 +2,27 @@
 	CO::RE()->errorReporting(E_PARSE | E_ERROR | E_WARNING);
 
 	/**
-	 * Р’С‹РїРѕР»РЅСЏРµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ Р±РёР±Р»РёРѕС‚РµРє
+	 * Выполняем подключение библиотек
 	 */
 
 	
-	require_once(DIR_ROOT . 'libs/db.php'); // РЎРѕРµРґРёРЅРµРЅРёРµ СЃ MySQL
-	require_once(DIR_ROOT . 'libs/authorize.php'); // РђРІС‚РѕСЂРёР·Р°С†РёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+	require_once(DIR_ROOT . 'libs/db.php'); // Соединение с MySQL
+	require_once(DIR_ROOT . 'libs/authorize.php'); // Авторизация пользователей
 	
 
 
 	/**
-	 * Р’С‹РїРѕР»РЅСЏРµРј РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ
+	 * Выполняем инициализацию
 	 */
 
 
-	require_once(DIR_ROOT . 'settings/mysql.php'); // РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє MySQL
-	require_once(DIR_ROOT . 'settings/url.php'); // РџСѓС‚Рё URL
-	require_once(DIR_ROOT . 'settings/authorize.php'); // РђРІС‚РѕСЂРёР·Р°С†РёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+	require_once(DIR_ROOT . 'settings/mysql.php'); // Подключение к MySQL
+	require_once(DIR_ROOT . 'settings/url.php'); // Пути URL
+	require_once(DIR_ROOT . 'settings/authorize.php'); // Авторизация
 
 
 	/**
-	 * Р’С‹РїРѕР»РЅСЏРµРј РѕР±СЂР°Р±РѕС‚РєСѓ URL
+	 * Выполняем обработку URL
 	 */
 
 
