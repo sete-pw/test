@@ -3,9 +3,9 @@ class table extends apiBaseClass{
     function getList(){
         $retJson = $this->createJson();
 
-        $returnRequest = CO::SQL()->query('SELECT * FROM users');
+        $returnRequest = CO::SQL()->query('SELECT * FROM tables');
         $retJson = $this->fillJson($returnRequest, $retJson);
-        
+
         return $retJson;
     }
 
