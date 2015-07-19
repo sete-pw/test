@@ -5,6 +5,11 @@
 		'url' => '/^api\/.*/',
 		'function' => function($name){
 			
+			$api = CO::RE()->url;
+			$api = explode('/', $api)[1];
+			$api = explode('.', $api);
+			CO::RE()->FIX('api', ['class' => $api[0], 'method' => $api[1]]);
+
 			require_once(DIR_ROOT . 'api/api.php');
 
 			CO::RE()->end();
