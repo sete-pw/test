@@ -11,7 +11,7 @@
 
         function __construct($apiFunctionName, $apiFunctionParams){
             $this->apiFunctionParams = stripcslashes($apiFunctionParams);
-            $this->apiFunctionName = explode('.', $apiFunctionName);
+            $this->apiFunctionName = $apiFunctionName;
         }
 
         function createJSON()
@@ -33,13 +33,13 @@
         //Вызов метода по переданым параметрам из конструктора
         function callMethod(){
             $resultMethod = $this->createJSON();
-            $apiName = stripcslashes($this->apiFunctionName[0]);
+            $apiName = stripcslashes($this->apiFunctionName['class']);
             $status = ApiConstants::$STATUS;
             if (file_exists(DIR_ROOT.'api/methods/'.$apiName.'.php')){
                 $apiClass = ApiCore::getApiEngineByName($apiName);
                 $apiReflection = new ReflectionClass($apiName);
                 try{
-                    $functionName = $this->apiFunctionName[1];
+                    $functionName = $this->apiFunctionName['method'];
                     $apiReflection->getMethod($functionName); //Проверка метода
                     $jsonParams = json_decode($this->apiFunctionParams);
                         if ($jsonParams){
