@@ -42,8 +42,6 @@
                     $functionName = $this->apiFunctionName['method'];
                     $apiReflection->getMethod($functionName); //Проверка метода
                     $jsonData = json_decode($this->apiFunctionParams);
-                    echo $this->apiFunctionParams;
-                    print_r($jsonData);
                     if ($jsonData){
 
                         $response = ApiConstants::$RESPONSE;
@@ -53,7 +51,7 @@
                         }else{
                             if ($res->err == ApiConstants::$ERROR_PARAMS){
                                 $resultMethod->$status = ApiConstants::$ERROR_PARAMS;
-                                $resultMethod->params = $this->apiFunctionParams;
+                                $resultMethod->params = json_encode($jsonData);
                             }
                             else{
                                 $resultMethod->$response = $res;
