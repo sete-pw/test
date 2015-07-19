@@ -131,7 +131,7 @@
 									<td>2</td>
 									<td>3 ряд,<br> 4 место</td>
 									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
@@ -139,7 +139,7 @@
 									<td>2</td>
 									<td>3 ряд,<br> 4 место</td>
 									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
@@ -147,7 +147,7 @@
 									<td>2</td>
 									<td>3 ряд,<br> 4 место</td>
 									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
@@ -155,7 +155,7 @@
 									<td>2</td>
 									<td>3 ряд,<br> 4 место</td>
 									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
@@ -163,7 +163,7 @@
 									<td>2</td>
 									<td>3 ряд,<br> 4 место</td>
 									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
@@ -171,7 +171,7 @@
 									<td>2</td>
 									<td>3 ряд,<br> 4 место</td>
 									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
@@ -179,7 +179,7 @@
 									<td>2</td>
 									<td>3 ряд,<br> 4 место</td>
 									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></td>
+									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 							</tbody>
 							<tbody>
@@ -189,7 +189,7 @@
 									<td> </td>
 									<td> </td>
 									<td>17500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить Всё"><span class="glyphicon glyphicon-remove"></span></td>
+									<td><a href="#del_all" class="text-danger" title="Удалить Всё"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 							</tbody>
 						</table> 
@@ -214,8 +214,9 @@
 		</div>
 		
 		<div class="container" id="content">
-    		<h1>ПАНЕЛЬ УПРАВЛЕНИЯ</h1>
+    		
 			<!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
+			<h1>ПАНЕЛЬ УПРАВЛЕНИЯ</h1>
 			<table class="table table-striped table-hover ">
 				<thead>
 					<tr>
@@ -260,7 +261,7 @@
 						<td> </td>
 						<td> </td>
 						<td>7500 руб.</td>
-						<td><a href="#del_row" class="text-danger" title="Удалить Всё"><span class="glyphicon glyphicon-remove"></span></td>
+						<td><a href="#del_all" class="text-danger" title="Удалить Всё"><span class="glyphicon glyphicon-remove"></span></td>
 					</tr>
 				</tbody>
 			</table>
