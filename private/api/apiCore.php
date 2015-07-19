@@ -42,8 +42,14 @@
                     $functionName = $this->apiFunctionName['method'];
                     $apiReflection->getMethod($functionName); //Проверка метода
                         $response = ApiConstants::$RESPONSE;
-                        $resultMethod->$response = $apiClass->$functionName($this->apiFunctionParams);
-                        $resultMethod->$status = ApiConstants::$ERROR_NO;
+                        $res = $apiClass->$functionName($this->apiFunctionParams);
+                        if  ($res != null){
+                            $resultMethod->$response = $res;
+                            $resultMethod->$status = ApiConstants::$ERROR_NO;
+                        }else{
+                            $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_RECORD;
+                        }
+
                 }
                 catch(Exception $ex) {
 
