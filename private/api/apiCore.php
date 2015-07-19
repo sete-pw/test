@@ -35,11 +35,11 @@
             $resultMethod = $this->createJSON();
             $apiName = stripcslashes($this->apiFunctionName['class']);
             $status = ApiConstants::$STATUS;
-            echo '1';
+            echo $apiName;
             if (file_exists(DIR_ROOT.'api/methods/'.$apiName.'.php')){
                 $apiClass = ApiCore::getApiEngineByName($apiName);
                 $apiReflection = new ReflectionClass($apiName);
-                echo '2';
+
                 try{
                     $functionName = $this->apiFunctionName['method'];
                     $apiReflection->getMethod($functionName); //Проверка метода
