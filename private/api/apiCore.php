@@ -46,8 +46,15 @@
                         if  ($res == null){
                             $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_RECORD;
                         }else{
-                            $resultMethod->$response = $res;
-                            $resultMethod->$status = ApiConstants::$ERROR_NO;
+                            if ($res->err == ApiConstants::$ERROR_PARAMS){
+                                $resultMethod->$status = ApiConstants::$ERROR_PARAMS;
+                                $resultMethod->params = $this->apiFunctionParams;
+                            }
+                            else{
+                                $resultMethod->$response = $res;
+                                $resultMethod->$status = ApiConstants::$ERROR_NO;
+                            }
+
                         }
 
                 }

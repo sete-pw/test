@@ -11,10 +11,14 @@ class table extends apiBaseClass{
 
     function setList($Params){
         $retJson = $this->createJson();
-        echo '123';
-        $returnRequest = CO::SQL()->query('SELECT id_set, position FROM sets WHERE table_id =?',[['i',$Params['table_id']]]);
-        if (empty($returnRequest)) return null;
-        $retJson = $this->fillJson($returnRequest, $retJson);
+        if(isset($Params['table_id'])){
+            $returnRequest = CO::SQL()->query('SELECT id_set, position FROM sets WHERE table_id =?',[['i',$Params['table_id']]]);
+            if (empty($returnRequest)) return null;
+            $retJson = $this->fillJson($returnRequest, $retJson);
+        }
+        else{
+            $retJson->err = ApiConstants::$ERROR_PARAMS;
+        }
         return $retJson;
     }
 
