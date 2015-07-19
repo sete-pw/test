@@ -10,7 +10,7 @@
 
 
         function __construct($apiFunctionName, $apiFunctionParams){
-            $this->apiFunctionParams = $apiFunctionParams;
+            $this->apiFunctionParams = stripcslashes($apiFunctionParams);
             $this->apiFunctionName = $apiFunctionName;
         }
 
