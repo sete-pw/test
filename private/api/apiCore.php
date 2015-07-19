@@ -45,7 +45,7 @@
                     if ($jsonData){
 
                         $response = ApiConstants::$RESPONSE;
-                        $res = $apiClass->$functionName($this->apiFunctionParams);
+                        $res = $apiClass->$functionName($jsonData);
                         if  ($res == null){
                             $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_RECORD;
                         }else{
