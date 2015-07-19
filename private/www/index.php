@@ -71,7 +71,10 @@ function renumber_table(tableID) {
 	});
 }
 
-
+/*==================*/
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
 <style type="text/css">
 .ui-sortable tr {
@@ -79,7 +82,7 @@ function renumber_table(tableID) {
 }
 		
 .ui-sortable tr:hover {
-	background:rgba(244,251,17,0.45);
+	background:rgba(190,220,255,0.69);
 }
 </style>
 		
@@ -305,7 +308,14 @@ function renumber_table(tableID) {
 						<td>2</td>
 						<td>3 ряд, 4 место</td>
 						<td>2500 руб.</td>
-						<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a> &nbsp; <a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Редактировать"><span class="glyphicon glyphicon-file"></span></a> </td>
+						<td>
+							<a href="#del_row" class="text-danger" data-toggle="tooltip" data-placement="left" title="Удалить">
+								<span class="glyphicon glyphicon-remove"></span>
+							</a> &nbsp; 
+							<a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Редактировать">
+								<span class="glyphicon glyphicon-file"></span>
+							</a> 
+							</td>
 					</tr>
 					<tr>
 						<td>1499</td>
