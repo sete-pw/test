@@ -16,6 +16,13 @@
 		}
 	]);
 
+
+
+
+
+
+
+
 	// Index
 	CO::RE()->PUSH('action', [
 		'url' => '/^$/',
@@ -56,6 +63,9 @@
 
 
 
+
+
+
 	/**
 	 * Авторизация
 	 */
@@ -88,15 +98,7 @@
 
 
 
-	// Получить хеш для юзера
-	CO::RE()->PUSH('action', [
-		'url' => '/^md5User/',
-		'function' => function(){
-			
-			echo CO::AUTH()->getUserHash(CO::RE()->get['id'], CO::RE()->get['passwd']);
 
-		}
-	]);
 
 	
 
