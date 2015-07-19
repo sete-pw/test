@@ -18,7 +18,6 @@
         {
             $returnJson = json_decode('{}');
             $responce = ApiConstants::$RESPONSE;
-            $returnJson->$responce = json_decode('{}');
             return $returnJson;
         }
 
@@ -35,7 +34,6 @@
             $resultMethod = $this->createJSON();
             $apiName = stripcslashes($this->apiFunctionName['class']);
             $status = ApiConstants::$STATUS;
-            echo $apiName;
             if (file_exists(DIR_ROOT.'api/methods/'.$apiName.'.php')){
                 $apiClass = ApiCore::getApiEngineByName($apiName);
                 $apiReflection = new ReflectionClass($apiName);
@@ -43,16 +41,9 @@
                 try{
                     $functionName = $this->apiFunctionName['method'];
                     $apiReflection->getMethod($functionName); //Проверка метода
-                    $jsonParams = json_decode($this->apiFunctionParams);
-                        if ($jsonParams){
                         $response = ApiConstants::$RESPONSE;
-                        $resultMethod->$response = $apiClass->$functionName($jsonParams);
+                        $resultMethod->$response = $apiClass->$functionName($this->apiFunctionParams);
                         $resultMethod->$status = ApiConstants::$ERROR_NO;
-                    }
-                    else{
-                        $resultMethod->$status = ApiConstants::$ERROR_ENGINE_PARAMS;
-                        $resultMethod->errStr = 'Error given params';
-                    }
                 }
                 catch(Exception $ex) {
 
