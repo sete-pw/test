@@ -75,6 +75,14 @@ limit 1;
 		}
 
 		/**
+		 * Возвращает запись пользователя в базе
+		 * @return array
+		 */
+		public function who(){
+			return $this->user;
+		}
+
+		/**
 		 * Выполнить алгоритм авторизации клиента НА СЕРВЕРЕ
 		 * @param  mixed Дополнительный массив аргументов
 		 * @return mixed
