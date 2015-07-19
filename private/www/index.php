@@ -32,11 +32,11 @@
 				</div>
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav nav-pills">
+					<ul class="nav navbar-nav">
 						<li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Главная<span class="sr-only">(current)</span></a></li>
 						<li><a href="#shop"><span class="glyphicon glyphicon-barcode"></span> Заказать Онлайн</a></li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right nav-pills">
+					<ul class="nav navbar-nav navbar-right">
 						<!-- ОДНО ИЗ ДВУХ ДОЛЖНО БЫТЬ -->
 						<? 
 							if(CO::AUTH()->user()){
