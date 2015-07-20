@@ -49,8 +49,8 @@
                         if  ($res == null){
                             $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_RECORD;
                         }else{
-                            if ($res->err == ApiConstants::$ERROR_PARAMS){
-                                $resultMethod->$status = ApiConstants::$ERROR_PARAMS;
+                            if (isset($res->$status)){
+                                $resultMethod = $res;
                                 $resultMethod->params = json_encode($jsonData);
                             }
                             else{
@@ -73,6 +73,6 @@
                 $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_METHOD;
                 $resultMethod->params = $this->apiFunctionParams;
             }
-            return json_encode($resultMethod,JSON_UNESCAPED_UNICODE);
+            return json_encode($resultMethod, JSON_UNESCAPED_UNICODE);
         }
     }

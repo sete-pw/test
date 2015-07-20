@@ -31,4 +31,7 @@
 
         //Не найден метод
         public static $ERROR_NOT_FOUND_METHOD = 6;
+
+        //Ошибка доступа
+        public static $ERROR_AUTH = 7;
     }

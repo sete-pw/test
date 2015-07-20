@@ -9,13 +9,12 @@
         function fillJson($returnRequest, $JsonObject){
             foreach($returnRequest as $num=> $arr){
                 $num = strtolower($num);
+                $JsonObject->$num = json_decode('{}');
                 foreach ($arr as $key=>$value){
                     $key = strtolower($key);
-                    echo mb_detect_encoding($value) . '<br>';
                     $JsonObject->$num->$key = $value;
                 }
             }
-            print_r($JsonObject);
             return $JsonObject;
         }
     }
