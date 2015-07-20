@@ -14,8 +14,6 @@
                     $JsonObject->$num->$key = $value;
                 }
             }
-            print_r($JsonObject);
             return $JsonObject;
         }
-
     }
