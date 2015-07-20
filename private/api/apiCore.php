@@ -70,8 +70,8 @@
             }
             else{
                 $resultMethod->errStr = 'Not found method';
-                $resultMethod->errNum = ApiConstants::$ERROR_NOT_FOUND_METHOD;
-                $resultMethod->REQUEST = $_REQUEST;
+                $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_METHOD;
+                $resultMethod->params = $this->apiFunctionParams;
             }
 
             return json_encode($resultMethod);
