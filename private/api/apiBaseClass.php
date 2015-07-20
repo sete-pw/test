@@ -11,7 +11,7 @@
                 $num = strtolower($num);
                 foreach ($arr as $key=>$value){
                     $key = strtolower($key);
-                    $JsonObject->$num->$key = iconv("CP1251","UTF-8",$value);
+                    $JsonObject->$num->$key = iconv("windows-1251", "UTF-8",$value);
                 }
             }
             return $JsonObject;
