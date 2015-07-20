@@ -3,7 +3,7 @@ class table extends apiBaseClass{
     function getList(){
         $retJson = $this->createJson();
 
-        $returnRequest = CO::SQL()->query('SELECT table_id, position, price FROM tables');
+        $returnRequest = CO::SQL()->query('SELECT id_table, position, price FROM tables');
         if (empty($returnRequest)) return null;
         print_r($returnRequest);
         $retJson = $this->fillJson($returnRequest, $retJson);
