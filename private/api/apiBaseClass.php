@@ -7,10 +7,13 @@
         }
 
         function fillJson($returnRequest, $JsonObject){
-            foreach($returnRequest as $key => $value){
-                $key = strtolower($key);
-                echo $key.'<br>';
-                $JsonObject->$key = $value;
+            foreach($returnRequest as $num=> $arr){
+                $num = strtolower($num);
+                foreach ($arr as $key=>$value){
+                    $key = strtolower($key);
+                    $JsonObject->$num->$key = $value;
+                }
+
             }
             return $JsonObject;
         }
