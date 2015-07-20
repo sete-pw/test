@@ -11,6 +11,7 @@
                 $num = strtolower($num);
                 foreach ($arr as $key=>$value){
                     $key = strtolower($key);
+                    echo $value.'<br>';
                     $JsonObject->$num->$key = $value;
                 }
 
