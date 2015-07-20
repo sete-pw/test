@@ -68,12 +68,11 @@
                     $resultMethod->errStr = $ex->getMessage();
                 }
             }
-            else{
+            else {
                 $resultMethod->errStr = 'Not found method';
                 $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_METHOD;
                 $resultMethod->params = $this->apiFunctionParams;
             }
-            //json_encode($resultMethod,JSON_UNESCAPED_UNICODE)
-            return mb_detect_encoding($resultMethod);
+            return json_encode($resultMethod,JSON_UNESCAPED_UNICODE);
         }
     }
