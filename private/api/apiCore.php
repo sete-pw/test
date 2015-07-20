@@ -1,6 +1,6 @@
 <?php
     /*
-     * ApiCore - ��������� ����� api � ��� ������
+     * ApiCore - СЂРµР°Р»РёР·СѓРµС‚ РІС‹Р·РѕРІ api Рё РµРіРѕ РјРµС‚РѕРґС‹
      */
     require_once(DIR_ROOT . 'api/apiConstants.php');
     class ApiCore{
@@ -21,7 +21,7 @@
             return $returnJson;
         }
 
-        //����������� api
+        //РџРѕРґРєР»СЋС‡РµРЅРёРµ api
         static function getApiEngineByName($apiName) {
             require_once DIR_ROOT . 'api/apiBaseClass.php';
             require_once DIR_ROOT .'api/methods/'. $apiName .'.php';
@@ -29,7 +29,7 @@
             return $apiClass;
         }
 
-        //����� ������ �� ��������� ���������� �� ������������
+        //Р’С‹Р·РѕРІ РјРµС‚РѕРґР° РїРѕ РїРµСЂРµРґР°РЅС‹Рј РїР°СЂР°РјРµС‚СЂР°Рј РёР· РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
         function callMethod(){
             $resultMethod = $this->createJSON();
             $apiName = stripcslashes($this->apiFunctionName['class']);
@@ -40,7 +40,7 @@
 
                 try{
                     $functionName = $this->apiFunctionName['method'];
-                    $apiReflection->getMethod($functionName); //�������� ������
+                    $apiReflection->getMethod($functionName); //РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґР°
                     $jsonData = json_decode($this->apiFunctionParams);
                     if ($jsonData){
 
@@ -73,6 +73,6 @@
                 $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_METHOD;
                 $resultMethod->params = $this->apiFunctionParams;
             }
-            return json_encode($resultMethod);
+            return json_encode($resultMethod,JSON_UNESCAPED_UNICODE);
         }
     }
