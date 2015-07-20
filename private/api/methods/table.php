@@ -5,7 +5,6 @@ class table extends apiBaseClass{
 
         $returnRequest = CO::SQL()->query('SELECT id_table, position, price FROM tables');
         if (empty($returnRequest)) return null;
-        print_r($returnRequest);
         $retJson = $this->fillJson($returnRequest, $retJson);
         return $retJson;
     }
