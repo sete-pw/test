@@ -73,6 +73,7 @@
                 $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_METHOD;
                 $resultMethod->params = $this->apiFunctionParams;
             }
-            return mb_detect_encoding(json_encode($resultMethod,JSON_UNESCAPED_UNICODE));
+            //json_encode($resultMethod,JSON_UNESCAPED_UNICODE)
+            return mb_detect_encoding($resultMethod);
         }
     }
