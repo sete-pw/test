@@ -9,11 +9,8 @@
         function fillJson($returnRequest, $JsonObject){
             foreach($returnRequest as $key => $value){
                 $key = strtolower($key);
-                if (count($value)>1){
-                    foreach ($value as $key1 => $value1) {
-                        $JsonObject->$key->$key1 = $value1;
-                    }
-                }else $JsonObject->$key = $value;
+                print_r($value);
+                $JsonObject->$key = $value;
             }
             return $JsonObject;
         }
