@@ -1,24 +1,24 @@
 # (C) SergeiTerehov.Art 2014-2015
 RewriteEngine On
 
-#Исключения
+#РСЃРєР»СЋС‡РµРЅРёСЏ
 RewriteRule ^assets/(.*)$ - [L]
 RewriteRule ^robots.txt$ - [L]
 RewriteRule ^test.php$ - [L]
 
 
-#Перенаправление в один входной скрипт
+#РџРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ Р·Р°РїСЂРѕСЃРѕРІ
 RewriteRule ^(.*)$ index.php [QSA,L]
 
 
 
 
-#Таймаут ожидания ответа
+#РўР°Р№РјР°СѓС‚ Р·Р°РїСЂРѕСЃР°
 php_value max_execution_time 10
 
 
 
-#Отображение ошибок error_reporting(E_ALL)
+#РЈСЂРѕРІРµРЅСЊ РѕС€РёР±РѕРє error_reporting(E_ALL)
 #php_flag display_errors on
 #php_value error_reporting 2047
 

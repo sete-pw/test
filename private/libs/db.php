@@ -2,23 +2,23 @@
 	namespace SQL;
 
 	/**
-	 * Ðåàëèçóåò âçàèìîäåéñòâèå ñ MySQL
-	 * @author Ñåðãåé Òåðåõîâ
+	 * Ð ÐµÐ°Ð»Ð¸Ð·ÑƒÐµÑ‚ Ð²Ð·Ð°Ð¸Ð¼Ð¾Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ñ MySQL
+	 * @author Ð¡ÐµÑ€Ð³ÐµÐ¹ Ð¢ÐµÑ€ÐµÑ…Ð¾Ð²
 	 */
 	class DATA{
 		/**
-		 * Ýêçåìïëÿð ñîåäèíåíèÿ ñ áàçîé äàííûõ
+		 * Ð­ÐºÐ·ÐµÐ¼Ð¿Ð»ÑÑ€ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ñ Ñ Ð±Ð°Ð·Ð¾Ð¹ Ð´Ð°Ð½Ð½Ñ‹Ñ…
 		 * @var mysqli
 		 */
 		private $connect;
 		/**
-		 * Ñîåäèíåíèå ñ áàçîé óñòàíîâëåííî?
+		 * Ð¡Ð¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ñ Ð±Ð°Ð·Ð¾Ð¹ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ð¾?
 		 * @var boolean
 		 */
 		private $connected = false;
 		/**
-		 * Âîçâðàùÿåò ñòðîêó â âèäå àññîöèàòèâíîãî ìàññèâà
-		 * @param  stmt Çàïðîñ
+		 * Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰ÑÐµÑ‚ ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð² Ð²Ð¸Ð´Ðµ Ð°ÑÑÐ¾Ñ†Ð¸Ð°Ñ‚Ð¸Ð²Ð½Ð¾Ð³Ð¾ Ð¼Ð°ÑÑÐ¸Ð²Ð°
+		 * @param  stmt Ð—Ð°Ð¿Ñ€Ð¾Ñ
 		 * @return array
 		 */
 		private function stmtRowAssoc (&$stmt){
@@ -49,10 +49,10 @@
 			}
 		}
 		/**
-		 * Âûïîëíÿåò çàïðîñ â áàçó è âîçâðàùàåò ðåçóëüòàò â âèäå àññîöèàòèâíîãî ìàññèâà
-		 * @param  string Çàïðîñ äëÿ prepare
-		 * @param  array Ïåðåìåííûå çàïðîñà [type => value]
-		 * @param  string Ïîëå äëÿ èíäåêñà ìàññèâà
+		 * Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ Ð·Ð°Ð¿Ñ€Ð¾Ñ Ð² Ð±Ð°Ð·Ñƒ Ð¸ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ Ð² Ð²Ð¸Ð´Ðµ Ð°ÑÑÐ¾Ñ†Ð¸Ð°Ñ‚Ð¸Ð²Ð½Ð¾Ð³Ð¾ Ð¼Ð°ÑÑÐ¸Ð²Ð°
+		 * @param  string Ð—Ð°Ð¿Ñ€Ð¾Ñ Ð´Ð»Ñ prepare
+		 * @param  array ÐŸÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ðµ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ° [type => value]
+		 * @param  string ÐŸÐ¾Ð»Ðµ Ð´Ð»Ñ Ð¸Ð½Ð´ÐµÐºÑÐ° Ð¼Ð°ÑÑÐ¸Ð²Ð°
 		 * @return array
 		 */
 		public function query($query, $vars = null, $fieldArrayIndex = false){
@@ -101,25 +101,25 @@
 			}
 		}
 		/**
-		 * Âîçâðàùàåò èäåíòèôèêàòîð âñòàâëåííîé çàïèñè
+		 * Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð¸Ð´ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€ Ð²ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð¹ Ð·Ð°Ð¿Ð¸ÑÐ¸
 		 * @return number
 		 */
 		public function iid(){
 			return $this->connect->insert_id;
 		}
 		/**
-		 * Âîçâðàùàåò èíôîðìàöèþ îá îøèáêå
+		 * Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ Ð¾Ð± Ð¾ÑˆÐ¸Ð±ÐºÐµ
 		 * @return string
 		 */
 		public function error(){
 			return $this->connect->error;
 		}
 		/**
-		 * Âûïîëíÿåò ïîäêëþ÷åíèå ê áàçå äàííûõ
-		 * @param  string Àäðåñ ñåðâåðà
-		 * @param  string Èìÿ ïîëüçîâàòåëÿ
-		 * @param  string Ïàðîëü ïîëüçîâàòåëÿ
-		 * @param  string Áàçà äàííûõ ïî óìîë÷àíèþ = information_schema
+		 * Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº Ð±Ð°Ð·Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ…
+		 * @param  string ÐÐ´Ñ€ÐµÑ ÑÐµÑ€Ð²ÐµÑ€Ð°
+		 * @param  string Ð˜Ð¼Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
+		 * @param  string ÐŸÐ°Ñ€Ð¾Ð»ÑŒ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ
+		 * @param  string Ð‘Ð°Ð·Ð° Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ = information_schema
 		 */
 		public function connect($host = 'localhost', $user = '', $passwd = '', $dbName = 'information_schema'){
 			$this->connect = mysqli_connect($host, $user, $passwd, $dbName);
@@ -128,21 +128,21 @@
 			}
 		}
 		/**
-		 * Ïðîâåðÿåò óñòàíîâëåííî ëè ñîåäèíåíèå ñ áàçîé
+		 * ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÑ‚ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ð¾ Ð»Ð¸ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ñ Ð±Ð°Ð·Ð¾Ð¹
 		 * @return boolean
 		 */
 		public function isConnect(){
 			return $this->connected;
 		}
 		/**
-		 * Èçìåíÿåò âûáðàííóþ áàçó äàííûõ
-		 * @param  string Èìÿ áàçû äàííûõ
+		 * Ð˜Ð·Ð¼ÐµÐ½ÑÐµÑ‚ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½ÑƒÑŽ Ð±Ð°Ð·Ñƒ Ð´Ð°Ð½Ð½Ñ‹Ñ…
+		 * @param  string Ð˜Ð¼Ñ Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ…
 		 */
 		public function dbSelect($dbName){
 			$this->connect->select_db($dbName);
 		}
 		/**
-		 * Ðàçðûâàåò ñîåäèíåíèå ñ áàçîé äàííûõ
+		 * Ð Ð°Ð·Ñ€Ñ‹Ð²Ð°ÐµÑ‚ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ñ Ð±Ð°Ð·Ð¾Ð¹ Ð´Ð°Ð½Ð½Ñ‹Ñ…
 		 */
 		public function disconnect(){
 			$this->connect->close();

@@ -2,27 +2,27 @@
 	CO::RE()->errorReporting(E_PARSE | E_ERROR | E_WARNING);
 
 	/**
-	 * Âûïîëíÿåì ïîäêëþ÷åíèå áèáëèîòåê
+	 * Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÐ¼ Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð±Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐº
 	 */
 
 	
-	require_once(DIR_ROOT . 'libs/db.php'); // Ñîåäèíåíèå ñ MySQL
-	require_once(DIR_ROOT . 'libs/authorize.php'); // Àâòîðèçàöèÿ ïîëüçîâàòåëåé
+	require_once(DIR_ROOT . 'libs/db.php'); // Ð¡Ð¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ñ MySQL
+	require_once(DIR_ROOT . 'libs/authorize.php'); // ÐÐ²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹
 	
 
 
 	/**
-	 * Âûïîëíÿåì èíèöèàëèçàöèþ
+	 * Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÐ¼ Ð¸Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸ÑŽ
 	 */
 
 
-	require_once(DIR_ROOT . 'settings/mysql.php'); // Ïîäêëþ÷åíèå ê MySQL
-	require_once(DIR_ROOT . 'settings/url.php'); // Ïóòè URL
-	require_once(DIR_ROOT . 'settings/authorize.php'); // Àâòîðèçàöèÿ
+	require_once(DIR_ROOT . 'settings/mysql.php'); // ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº MySQL
+	require_once(DIR_ROOT . 'settings/url.php'); // ÐŸÑƒÑ‚Ð¸ URL
+	require_once(DIR_ROOT . 'settings/authorize.php'); // ÐÐ²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ñ
 
 
 	/**
-	 * Ïîäêëþ÷àåìûå ýëåìåíòû
+	 * ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼Ñ‹Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹
 	 */
 	CO::RE()->FIX('inc', [
 		'template', 'elements/template.php'
@@ -31,9 +31,9 @@
 
 
 	/**
-	 * Âûïîëíÿåì îáðàáîòêó URL
+	 * Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÐ¼ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÑƒ URL
 	 */
 
 
-	CO::RE()->PUSH('header', 'text/html charset=windows-1251', 'Content-Type');
+	CO::RE()->PUSH('header', 'text/html charset=utf-8', 'Content-Type');
 	CO::RE()->ACTION();

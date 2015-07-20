@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-		<title>Столики онлайн</title>
+		<title>РЎС‚РѕР»РёРєРё РѕРЅР»Р°Р№РЅ</title>
 
 		<!-- Bootstrap -->
 		<link href="../../assets/libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -97,39 +97,39 @@ $(function () {
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/">Столики онлайн</a>
+					<a class="navbar-brand" href="/">РЎС‚РѕР»РёРєРё РѕРЅР»Р°Р№РЅ</a>
 				</div>
 
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Главная<span class="sr-only">(current)</span></a></li>
-						<li><a href="#shop"><span class="glyphicon glyphicon-barcode"></span> Заказать Онлайн</a></li>
+						<li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Р“Р»Р°РІРЅР°СЏ<span class="sr-only">(current)</span></a></li>
+						<li><a href="#shop"><span class="glyphicon glyphicon-barcode"></span> Р—Р°РєР°Р·Р°С‚СЊ РћРЅР»Р°Р№РЅ</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<!-- ОДНО ИЗ ДВУХ ДОЛЖНО БЫТЬ -->
+						<!-- РћР”РќРћ РР— Р”Р’РЈРҐ Р”РћР›Р–РќРћ Р‘Р«РўР¬ -->
 						<? 
 							if(CO::AUTH()->user()){
 						?>
-						<li><a href="#binModal" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина <span class="badge">0</span></a></li>
+						<li><a href="#binModal" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span> РљРѕСЂР·РёРЅР° <span class="badge">0</span></a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?=CO::AUTH()->who()['name'];?><span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#settings"><span class="glyphicon glyphicon-cog"></span> Настройки</a></li>
+								<li><a href="#settings"><span class="glyphicon glyphicon-cog"></span> РќР°СЃС‚СЂРѕР№РєРё</a></li>
 						<?	
-								if(CO::AUTH()->admin()){//если админ то добавить пункт меню
+								if(CO::AUTH()->admin()){//РµСЃР»Рё Р°РґРјРёРЅ С‚Рѕ РґРѕР±Р°РІРёС‚СЊ РїСѓРЅРєС‚ РјРµРЅСЋ
 						?>				
-						<li><a href="#admin"><span class="glyphicon glyphicon-wrench"></span> Управление</a></li>
+						<li><a href="#admin"><span class="glyphicon glyphicon-wrench"></span> РЈРїСЂР°РІР»РµРЅРёРµ</a></li>
 						<?
 								}
 						?>
 								<li class="divider"></li>
-								<li><a href="/logout"><span class="glyphicon glyphicon-remove"></span> Выйти</a></li>
+								<li><a href="/logout"><span class="glyphicon glyphicon-remove"></span> Р’С‹Р№С‚Рё</a></li>
 							</ul>
 						</li>
 						<?
 							} else {
 						?>
-						<li><a href="#loginModal" data-toggle="modal" class="text-success"> <span class="glyphicon glyphicon-lock text-success"></span> Войти </a></li>
+						<li><a href="#loginModal" data-toggle="modal" class="text-success"> <span class="glyphicon glyphicon-lock text-success"></span> Р’РѕР№С‚Рё </a></li>
 						<? 
 							} 
 						?>
@@ -143,7 +143,7 @@ $(function () {
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-						<h4 class="modal-title">Вход</h4>
+						<h4 class="modal-title">Р’С…РѕРґ</h4>
 					</div>
 					<div class="modal-body">		
 						<form class="form-horizontal" method="POST" action="/login">
@@ -155,15 +155,15 @@ $(function () {
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputPassword" class="col-lg-2 control-label">Пароль</label>
+									<label for="inputPassword" class="col-lg-2 control-label">РџР°СЂРѕР»СЊ</label>
 									<div class="col-lg-10">
-										<input class="form-control" id="inputPassword" placeholder="Пароль" type="password" name="passwd">
+										<input class="form-control" id="inputPassword" placeholder="РџР°СЂРѕР»СЊ" type="password" name="passwd">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-lg-10 col-lg-offset-2">
-										<button type="submit" class="btn btn-primary"> Войти </button>
-										<a class="btn btn-info" href="#reg">Регистрация</a>
+										<button type="submit" class="btn btn-primary"> Р’РѕР№С‚Рё </button>
+										<a class="btn btn-info" href="#reg">Р РµРіРёСЃС‚СЂР°С†РёСЏ</a>
 									</div>
 								</div>
 							</fieldset>
@@ -178,19 +178,19 @@ $(function () {
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-						<h4 class="modal-title">Корзина</h4>
+						<h4 class="modal-title">РљРѕСЂР·РёРЅР°</h4>
 					</div>
 					<div class="modal-body">		
-						<?/*Номер заказа; Номер столика; номер места; положение (типа Третий ряд, четвертый стул); стоимость; кнопка Удалить*/?>
+						<?/*РќРѕРјРµСЂ Р·Р°РєР°Р·Р°; РќРѕРјРµСЂ СЃС‚РѕР»РёРєР°; РЅРѕРјРµСЂ РјРµСЃС‚Р°; РїРѕР»РѕР¶РµРЅРёРµ (С‚РёРїР° РўСЂРµС‚РёР№ СЂСЏРґ, С‡РµС‚РІРµСЂС‚С‹Р№ СЃС‚СѓР»); СЃС‚РѕРёРјРѕСЃС‚СЊ; РєРЅРѕРїРєР° РЈРґР°Р»РёС‚СЊ*/?>
 						<table class="table table-striped table-hover ">
 							<thead>
 								<tr>
-									<th>Номер Заказа</th>
-									<th>Номер столика</th>
-									<th>Номер места</th>
-									<th>Положение</th>
-									<th>Стоимость</th>
-									<th>Операции</th>
+									<th>РќРѕРјРµСЂ Р—Р°РєР°Р·Р°</th>
+									<th>РќРѕРјРµСЂ СЃС‚РѕР»РёРєР°</th>
+									<th>РќРѕРјРµСЂ РјРµСЃС‚Р°</th>
+									<th>РџРѕР»РѕР¶РµРЅРёРµ</th>
+									<th>РЎС‚РѕРёРјРѕСЃС‚СЊ</th>
+									<th>РћРїРµСЂР°С†РёРё</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -198,67 +198,67 @@ $(function () {
 									<td>1488</td>
 									<td>13</td>
 									<td>2</td>
-									<td>3 ряд,<br> 4 место</td>
-									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
+									<td>3 СЂСЏРґ,<br> 4 РјРµСЃС‚Рѕ</td>
+									<td>2500 СЂСѓР±.</td>
+									<td><a href="#del_row" class="text-danger" title="РЈРґР°Р»РёС‚СЊ"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
 									<td>13</td>
 									<td>2</td>
-									<td>3 ряд,<br> 4 место</td>
-									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
+									<td>3 СЂСЏРґ,<br> 4 РјРµСЃС‚Рѕ</td>
+									<td>2500 СЂСѓР±.</td>
+									<td><a href="#del_row" class="text-danger" title="РЈРґР°Р»РёС‚СЊ"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
 									<td>13</td>
 									<td>2</td>
-									<td>3 ряд,<br> 4 место</td>
-									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
+									<td>3 СЂСЏРґ,<br> 4 РјРµСЃС‚Рѕ</td>
+									<td>2500 СЂСѓР±.</td>
+									<td><a href="#del_row" class="text-danger" title="РЈРґР°Р»РёС‚СЊ"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
 									<td>13</td>
 									<td>2</td>
-									<td>3 ряд,<br> 4 место</td>
-									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
+									<td>3 СЂСЏРґ,<br> 4 РјРµСЃС‚Рѕ</td>
+									<td>2500 СЂСѓР±.</td>
+									<td><a href="#del_row" class="text-danger" title="РЈРґР°Р»РёС‚СЊ"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
 									<td>13</td>
 									<td>2</td>
-									<td>3 ряд,<br> 4 место</td>
-									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
+									<td>3 СЂСЏРґ,<br> 4 РјРµСЃС‚Рѕ</td>
+									<td>2500 СЂСѓР±.</td>
+									<td><a href="#del_row" class="text-danger" title="РЈРґР°Р»РёС‚СЊ"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
 									<td>13</td>
 									<td>2</td>
-									<td>3 ряд,<br> 4 место</td>
-									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
+									<td>3 СЂСЏРґ,<br> 4 РјРµСЃС‚Рѕ</td>
+									<td>2500 СЂСѓР±.</td>
+									<td><a href="#del_row" class="text-danger" title="РЈРґР°Р»РёС‚СЊ"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 								<tr>
 									<td>1488</td>
 									<td>13</td>
 									<td>2</td>
-									<td>3 ряд,<br> 4 место</td>
-									<td>2500 руб.</td>
-									<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
+									<td>3 СЂСЏРґ,<br> 4 РјРµСЃС‚Рѕ</td>
+									<td>2500 СЂСѓР±.</td>
+									<td><a href="#del_row" class="text-danger" title="РЈРґР°Р»РёС‚СЊ"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 							</tbody>
 							<tbody>
 								<tr>
-									<td>ИТОГО</td>
+									<td>РРўРћР“Рћ</td>
 									<td> </td>
 									<td> </td>
 									<td> </td>
-									<td>17500 руб.</td>
-									<td><a href="#del_all" class="text-danger" title="Удалить Всё"><span class="glyphicon glyphicon-remove"></span></a></td>
+									<td>17500 СЂСѓР±.</td>
+									<td><a href="#del_all" class="text-danger" title="РЈРґР°Р»РёС‚СЊ Р’СЃС‘"><span class="glyphicon glyphicon-remove"></span></a></td>
 								</tr>
 							</tbody>
 						</table> 
@@ -273,7 +273,7 @@ $(function () {
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-						<h4 class="modal-title">Редактировать</h4>
+						<h4 class="modal-title">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</h4>
 					</div>
 					<div class="modal-body">		
 						
@@ -284,71 +284,71 @@ $(function () {
 		
 		<div class="container" id="content">
     	<?
-			if(CO::AUTH()->admin()){//если админ или юзер то добавить
+			if(CO::AUTH()->admin()){//РµСЃР»Рё Р°РґРјРёРЅ РёР»Рё СЋР·РµСЂ С‚Рѕ РґРѕР±Р°РІРёС‚СЊ
 		?>
-			<!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
-			<h1>ПАНЕЛЬ УПРАВЛЕНИЯ</h1>
+			<!-- РџРђРќР•Р›Р¬ РЈРџР РђР’Р›Р•РќРРЇ -->
+			<h1>РџРђРќР•Р›Р¬ РЈРџР РђР’Р›Р•РќРРЇ</h1>
 			<table class="table" id="diagnosis_list">
 				<thead>
 					<tr>
-						<th>Номер Заказа</th>
-						<th>Клиент</th>
-						<th>Номер столика</th>
-						<th>Номер места</th>
-						<th>Положение</th>
-						<th>Стоимость</th>
-						<th>Операции</th>
+						<th>РќРѕРјРµСЂ Р—Р°РєР°Р·Р°</th>
+						<th>РљР»РёРµРЅС‚</th>
+						<th>РќРѕРјРµСЂ СЃС‚РѕР»РёРєР°</th>
+						<th>РќРѕРјРµСЂ РјРµСЃС‚Р°</th>
+						<th>РџРѕР»РѕР¶РµРЅРёРµ</th>
+						<th>РЎС‚РѕРёРјРѕСЃС‚СЊ</th>
+						<th>РћРїРµСЂР°С†РёРё</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>1488</td>
-						<td>ИмяКлиента</td>
+						<td>РРјСЏРљР»РёРµРЅС‚Р°</td>
 						<td>13</td>
 						<td>2</td>
-						<td>3 ряд, 4 место</td>
-						<td>2500 руб.</td>
+						<td>3 СЂСЏРґ, 4 РјРµСЃС‚Рѕ</td>
+						<td>2500 СЂСѓР±.</td>
 						<td>
-							<a href="#del_row" class="text-danger" data-toggle="tooltip" data-placement="left" title="Удалить">
+							<a href="#del_row" class="text-danger" data-toggle="tooltip" data-placement="left" title="РЈРґР°Р»РёС‚СЊ">
 								<span class="glyphicon glyphicon-remove"></span>
 							</a> &nbsp; 
-							<a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Редактировать">
+							<a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ">
 								<span class="glyphicon glyphicon-file"></span>
 							</a> 
 							</td>
 					</tr>
 					<tr>
 						<td>1499</td>
-						<td>ИмяКлиента</td>
+						<td>РРјСЏРљР»РёРµРЅС‚Р°</td>
 						<td>13</td>
 						<td>2</td>
-						<td>3 ряд, 4 место</td>
-						<td>3000 руб.</td>
-						<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a> &nbsp; <a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Редактировать"><span class="glyphicon glyphicon-file"></span></a></td>
+						<td>3 СЂСЏРґ, 4 РјРµСЃС‚Рѕ</td>
+						<td>3000 СЂСѓР±.</td>
+						<td><a href="#del_row" class="text-danger" title="РЈРґР°Р»РёС‚СЊ"><span class="glyphicon glyphicon-remove"></span></a> &nbsp; <a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"><span class="glyphicon glyphicon-file"></span></a></td>
 					</tr>
 					<tr>
 						<td>1349</td>
-						<td>ИмяКлиента</td>
+						<td>РРјСЏРљР»РёРµРЅС‚Р°</td>
 						<td>13</td>
 						<td>2</td>
-						<td>3 ряд, 4 место</td>
-						<td>1666 руб.</td>
-						<td><a href="#del_row" class="text-danger" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a> &nbsp; <a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Редактировать"><span class="glyphicon glyphicon-file"></span></a></td>
+						<td>3 СЂСЏРґ, 4 РјРµСЃС‚Рѕ</td>
+						<td>1666 СЂСѓР±.</td>
+						<td><a href="#del_row" class="text-danger" title="РЈРґР°Р»РёС‚СЊ"><span class="glyphicon glyphicon-remove"></span></a> &nbsp; <a href="#set_rowModal"  data-toggle="modal" class="text-primary" title="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"><span class="glyphicon glyphicon-file"></span></a></td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<td>ИТОГО</td>
+						<td>РРўРћР“Рћ</td>
 						<td> </td>
 						<td> </td>
 						<td> </td>
 						<td> </td>
-						<td>7166 руб.</td>
-						<td><a href="#del_all" class="text-danger" title="Удалить Всё"><span class="glyphicon glyphicon-remove"></span></td>
+						<td>7166 СЂСѓР±.</td>
+						<td><a href="#del_all" class="text-danger" title="РЈРґР°Р»РёС‚СЊ Р’СЃС‘"><span class="glyphicon glyphicon-remove"></span></td>
 					</tr>
 				</tbody>
 			</table>
-			<!-- END ПАНЕЛЬ УПРАВЛЕНИЯ -->
+			<!-- END РџРђРќР•Р›Р¬ РЈРџР РђР’Р›Р•РќРРЇ -->
 		<?
 			}
 		?>

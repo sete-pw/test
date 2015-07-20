@@ -5,6 +5,6 @@
 	CO::SQL()->connect('188.120.227.83', 'root', 'kolkol123', 'test_sete_pw');
 	
 	CO::SQL()->query("
-		set names cp1251;
+		set names utf8;
 	");
 
