@@ -73,6 +73,6 @@
                 $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_METHOD;
                 $resultMethod->params = $this->apiFunctionParams;
             }
-            return iconv("UTF-8","windows-1251",json_encode($resultMethod));
+            return iconv('UTF-8','windows-1251',json_encode($resultMethod));
         }
     }
