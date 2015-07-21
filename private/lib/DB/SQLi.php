@@ -59,7 +59,7 @@
 			}
 			
 			if(false !== $stmt){
-				if(false === is_null($vars)){
+				if(false === is_null($vars) && count($vars)){
 					$types = array();
 					
 					foreach($vars as $k => $v){
@@ -76,7 +76,7 @@
 					foreach($vars as $k => $v){
 						$args[] = &$vars[$k][1];
 					}
-					
+
 					call_user_func_array(mysqli_stmt_bind_param, $args);
 				}
 				
