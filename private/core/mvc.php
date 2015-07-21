@@ -3,7 +3,9 @@
 		public $view;
 		public $model;
 
-		abstract function index($args = []);
+		public function index($args = []){
+			
+		}
 	}
 
 
@@ -25,10 +27,10 @@
 		public function get($data){
 			ob_start();
 			$this->content($data);
-			$this->content = ob_end_flush();
+			$this->content = ob_get_clean();
 
 			return $this->content;
 		}
 
-		abstract function content($data);
+		abstract protected function content($data);
 	}
