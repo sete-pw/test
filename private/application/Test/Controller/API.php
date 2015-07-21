@@ -12,7 +12,6 @@
 		function index($args = []){
 
 			$this->model->$args['method']($args);
-
 			return $this->view->get( $this->model->data() );
 
 		}
