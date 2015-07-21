@@ -38,6 +38,7 @@
                 $apiClass = ApiCore::getApiEngineByName($apiName);
                 $apiReflection = new ReflectionClass($apiName);
 
+
                 try{
                     $functionName = $this->apiFunctionName['method'];
                     $apiReflection->getMethod($functionName); //РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґР°
@@ -64,12 +65,11 @@
                     }
                 }
                 catch(Exception $ex) {
-
-                    $resultMethod->errStr = $ex->getMessage();
+                    $resultMethod->$status = ApiConstants::$ERROR_STMP;
+                    $resultMethod->params = $this->apiFunctionParams;
                 }
             }
             else {
-                $resultMethod->errStr = 'Not found method';
                 $resultMethod->$status = ApiConstants::$ERROR_NOT_FOUND_METHOD;
                 $resultMethod->params = $this->apiFunctionParams;
             }

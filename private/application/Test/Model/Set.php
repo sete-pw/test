@@ -7,4 +7,8 @@
 		function data(){
 			return $this->VALUES();
 		}
+
+		function getList(){
+			$return = $this;
+		}
 	}
