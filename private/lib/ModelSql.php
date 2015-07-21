@@ -2,7 +2,8 @@
 	abstract class ModelSql{
 		private $sql;
 
-		private $table;
+		protected $table;
+
 		private $type;
 		private $place;
 		private $value;
@@ -10,7 +11,9 @@
 
 		final public function __construct(){
 			$spaces = explode('\\', get_called_class());
-			$this->table = strtolower(array_pop($spaces));
+			if(is_null($this->table)){
+				$this->table = strtolower(array_pop($spaces));
+			}
 			$this->sql = CO::SQL();
 
 			$this->update = [];

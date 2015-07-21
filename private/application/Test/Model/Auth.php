@@ -11,7 +11,7 @@
 			$this->salt = $salt;
 
 			$this->level = 0;
-			$this->user = new \Application\Test\Model\Users();
+			$this->user = new \Application\Test\Model\User();
 
 			if(false !== $this->user->findBy_id_user((int)\CO::RE()->cookie['authid'])){
 				if($this->user->passwd === \CO::RE()->cookie['authsh']){
@@ -21,7 +21,7 @@
 		}
 
 		function login($email, $passwd){
-			$user = new \Application\Test\Model\Users();
+			$user = new \Application\Test\Model\User();
 
 			if(
 				false !== $user->findBy_email($email)
@@ -38,7 +38,7 @@
 
 			unset($this->user);
 			$this->level = 0;
-			$this->user = new \Application\Test\Model\Users();
+			$this->user = new \Application\Test\Model\User();
 		}
 
 		/**

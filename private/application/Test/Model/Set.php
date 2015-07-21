@@ -1,8 +1,9 @@
 <?
 	namespace Application\Test\Model;
 
-	class Users extends \ModelSql{
-
+	class Set extends \ModelSql{
+		protected $table = 'sets';
+		
 		function data(){
 			return $this->VALUES();
 		}

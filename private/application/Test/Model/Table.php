@@ -1,7 +1,8 @@
 <?
 	namespace Application\Test\Model;
 
-	class Tables extends \ModelSql{
+	class Table extends \ModelSql{
+		protected $table = 'tables';
 		
 		function data(){
 			return $this->VALUES();

@@ -11,6 +11,10 @@
 				$out = new Controller\Page();
 				echo $out->index();
 			});
+			$this->router->push('/^test$/', function($args){
+				$out = new Controller\Page();
+				echo $out->test();
+			});
 
 			$this->router->push('/^api\/v(?P<version>.*)\/(?P<class>.*)\.(?P<method>.*)/', function($args){
 				$out = new Controller\API();

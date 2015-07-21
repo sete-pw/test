@@ -1,8 +1,9 @@
 <?
 	namespace Application\Test\Model;
 
-	class Order_Sets extends \ModelSql{
-		
+	class User extends \ModelSql{
+		protected $table = 'users';
+
 		function data(){
 			return $this->VALUES();
 		}
