@@ -8,7 +8,7 @@ RewriteRule ^test.php$ - [L]
 
 
 #Перенаправление запросов
-RewriteRule ^(.*)$ test.php [QSA,L]
+RewriteRule ^(.*)$ index.php [QSA,L]
 
 
 
