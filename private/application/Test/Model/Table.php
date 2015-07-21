@@ -1,6 +1,8 @@
 <?
 	namespace Application\Test\Model;
 
+	use Application\Test\Controller\ApiConstants;
+
 	class Table extends \ModelSql{
 		protected $table = 'tables';
 		
@@ -10,7 +12,7 @@
 
 		function getList(){
 			$ReturnRequest =  $this->QUERY('SELECT id_table, position, price FROM tables',[],'id_table');
-			if (count($ReturnRequest) > 0) return $ReturnRequest; else return ['errMsg'=>'Not found record','errNum'=>3];
+			return $ReturnRequest;
 		}
 
 		function setList($params){
@@ -21,8 +23,11 @@
                                                 ",[
 													['s','delete'],
 													['i',$params['table_id']]],'id_set');
-				if (count($ReturnRequest) > 0) return $ReturnRequest; else return ['errMsg'=>'Not found record','errNum'=>3];
+				return $ReturnRequest;
 			}
-			else return ['errMsg' => 'Missing params', 'errNum' => 1];
+			else return [
+				'status' => 'error',
+				'errMsg' => 'Missing params',
+				'errNum' => ApiConstants::$ERROR_PARAMS];
 		}
 	}
