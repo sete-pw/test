@@ -12,36 +12,36 @@
 
 				if (method_exists($apiClass, $name)){
 					$query = $apiClass->$name(\CO::RE()->get);
-					if (isset($query['errNum'])){
+					if (isset($query[ApiConstants::$ERROR_CODE])){
 						$this->data = $query;
 					}
 					else{
 						if (count($query)>0){
-							$this->data['status'] = 'success';
-							$this->data['response'] = $query;
+							$this->data[ApiConstants::$STATUS] = ApiConstants::$SUCCESS;
+							$this->data[ApiConstants::$RESPONSE] = $query;
 						}
 						else {
 							$this->data = [
-								'status' => 'error',
-								'errMsg' => 'Not found record',
-								'errNum' => ApiConstants::$ERROR_NOT_FOUND_RECORD
+								ApiConstants::$STATUS => ApiConstants::$ERROR,
+								ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_NOT_FOUND_RECORD_STRING,
+								ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_NOT_FOUND_RECORD_CODE
 							];
 						}
 					}
 				}
 				else{
 					$this->data = [
-						'status' => 'error',
-						'errMsg' => 'Not found method',
-						'errNum' => ApiConstants::$ERROR_NOT_FOUND_METHOD
+						ApiConstants::$STATUS => ApiConstants::$ERROR,
+						ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_NOT_FOUND_METHOD_STRING,
+						ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_NOT_FOUND_METHOD_CODE
 					];
 				}
 			}
 			else{
 				$this->data = [
-					'status' => 'error',
-					'errMsg' => 'Not found class',
-					'errNum' => ApiConstants::$ERROR_NOT_FOUND_CLASS
+					ApiConstants::$STATUS => ApiConstants::$ERROR,
+					ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_NOT_FOUND_CLASS_STRING,
+					ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_NOT_FOUND_CLASS_CODE
 				];
 			}
 		}

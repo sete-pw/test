@@ -15,9 +15,9 @@ class Bin extends Order{
         }
         if(\CO::AUTH()->unknown()){
             return [
-                'status' => 'error',
-                'errMsg' => 'Not auth user',
-                'errNum' => ApiConstants::$ERROR_AUTH
+                ApiConstants::$STATUS => ApiConstants::$ERROR,
+                ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_AUTH__STRING,
+                ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_AUTH_CODE
             ];
         }
     }
@@ -36,10 +36,12 @@ class Bin extends Order{
         }
         if (CO::AUTH()->unknown()) {
             return [
-                'status' => 'error',
-                'errMsg' => 'Not auth user',
-                'errNum' => ApiConstants::$ERROR_AUTH
+                ApiConstants::$STATUS => ApiConstants::$ERROR,
+                ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_AUTH__STRING,
+                ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_AUTH_CODE
             ];
         }
     }
+
+
 }
