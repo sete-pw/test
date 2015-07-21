@@ -31,16 +31,25 @@
 		public static $STATUS = "status";
 
 		//Ошибок нет
-		public static  $ERROR_NO = 0;
+		public static  $SUCCESS = 'success';
+
+
+		public static  $ERROR = 'error';
+
+		public static $ERROR_MESSAGE = 'errMsg';
+
+		public static $ERROR_CODE = 'errNum';
 
 		//Ошибка в параметрах запроса
-		public static $ERROR_PARAMS = 1;
+		public static $ERROR_PARAMS_CODE = 1;
+		public static $ERROR_PARAMS_STRING = 'Missing params';
 
 		//Ошибка в подготовке запроса к базе
 		public static $ERROR_STMP = 2;
 
 		//Запись не найдена
-		public static $ERROR_NOT_FOUND_RECORD = 3;
+		public static $ERROR_NOT_FOUND_RECORD_CODE = 3;
+		public static $ERROR_NOT_FOUND_RECORD_STRING = 'Not found record';
 
 		//Ошибка при запросе к базе
 		public static $ERROR_REQUEST = 4;
@@ -49,11 +58,16 @@
 		public static $ERROR_ENGINE_PARAMS = 5;
 
 		//Не найден метод
-		public static $ERROR_NOT_FOUND_METHOD = 6;
+		public static $ERROR_NOT_FOUND_METHOD_CODE = 6;
+		public static $ERROR_NOT_FOUND_METHOD_STRING = 'Not found method';
 
 		//Не найден class
-		public static $ERROR_NOT_FOUND_CLASS = 7;
+		public static $ERROR_NOT_FOUND_CLASS_CODE = 7;
+		public static $ERROR_NOT_FOUND_CLASS_STRING= 'Not found class';
 
 		//Ошибка доступа
-		public static $ERROR_AUTH = 8;
+		public static $ERROR_AUTH_CODE = 8;
+		public static $ERROR_AUTH__STRING = 'Not auth user';
+
+
 }
