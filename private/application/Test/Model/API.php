@@ -12,7 +12,7 @@
 
 				if (method_exists($apiClass, $name)){
 					$query = $apiClass->$name(\CO::RE()->get);
-					if (isset($query[ApiConstants::$ERROR_CODE])){
+					if (isset($query[ApiConstants::$ERROR_CODE]) || isset($query[ApiConstants::$STATUS])){
 						$this->data = $query;
 					}
 					else{
