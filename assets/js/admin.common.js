@@ -1,19 +1,25 @@
+chtml.turn = {
+	list: {},
+	results: {},
 
+	clear: function(){
+		chtml.turn.list.html('');
+	},
 
-var chtml = {
-	turn: {
+	update: function(){
+		chtml.turn.clear();
 
-	}
+	},
 
 	init: function(){
+		chtml.turn.list = $('#order_container');
 
+		chtml.turn.update();
 	}
 };
 
 
 $(document).ready(function() {
-
-	chtml.init();
 
 	//Make table sortable
 	$("#active_orders_list tbody.sort").sortable({

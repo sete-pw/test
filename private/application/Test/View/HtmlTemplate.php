@@ -17,6 +17,8 @@
 	<!-- Bootstrap -->
 	<link href="/assets/libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
+	<link href="/assets/css/main.css" rel="stylesheet">
+
 	<? foreach(\CO::RE()->css as $css){ ?>
 	<link href="<?=$css?>" rel="stylesheet">
 	<? } ?>
@@ -54,7 +56,7 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user">&nbsp;</span><?=\CO::AUTH()->who()->name?><span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#settings"><span class="glyphicon glyphicon-cog"></span>&nbsp;Настройки</a></li>
+							<li><a href="/user"><span class="glyphicon glyphicon-cog"></span>&nbsp;Настройки</a></li>
 					<?	
 							if(\CO::AUTH()->admin()){//если админ то добавить пункт меню
 					?>				
@@ -190,6 +192,11 @@
 	<script src="/assets/libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 
 	<script src="/assets/js/api.js"></script>
+	<script src="/assets/js/common.js"></script>
+
+	<? if(\CO::AUTH()->user()){ ?>
+		<script src="/assets/js/bin.js"></script>
+	<? } ?>
 	
 	<? foreach(\CO::RE()->js as $js){ ?>
 		<!--SORT TABLE in panel admininstrator-->

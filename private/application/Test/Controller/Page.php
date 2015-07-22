@@ -40,4 +40,23 @@
 			
 			$this->htmlOut( $this->view->get( $this->model->data() ) );
 		}
+
+		function user($args = []){
+			$this->model = new \Application\Test\Model\Page\User();
+			$this->view = new \Application\Test\View\Page\User();
+
+			if(isset(\CO::RE()->post['act']) && \CO::RE()->post['act'] === 'edit'){
+				$this->userEdit();
+			}
+			
+			$this->htmlOut( $this->view->get( $this->model->data() ) );
+		}
+		function userEdit(){
+			$this->model->edit([
+				'name' => \CO::RE()->post['name'],
+				'email' => \CO::RE()->post['email'],
+				'passwd' => \CO::RE()->post['passwd'],
+				'passwdNew' => \CO::RE()->post['passwd_new'],
+			]);
+		}
 	}

@@ -23,7 +23,8 @@
 		</tr>
 	</thead>
 	<tbody id="order_container" class="sort">
-		<tr id="order_item_1" data-id="1" data-sortid="3">
+
+		<tr id="item_1" data-id="1" data-sortid="3">
 			<td>1</td>
 			<td>ИмяКлиента</td>
 			<td>13</td>
@@ -36,16 +37,17 @@
 				<a href="#set_rowModal" data-toggle="modal" class="text-primary" title="Редактировать"><span class="glyphicon glyphicon-file"></span></a> 
 			</td>
 		</tr>
+		
 	</tbody>
 	<tbody>
 		<tr>
 			<td>ИТОГО</td>
-			<td> </td>
-			<td> </td>
-			<td> </td>
-			<td> </td>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td></td>
 			<td>7166 руб.</td>
-			<td><a href="#del_all" class="text-danger" title="Удалить Всё"><span class="glyphicon glyphicon-remove"></span></td>
+			<td></td>
 		</tr>
 	</tbody>
 </table>
