@@ -44,4 +44,41 @@ ORDER BY sort_id desc");
 				];
 			}
 		}
+
+		/**
+	     * Выполняет расстановку элементов по позициям в очереди
+	     */
+	    function qeueNewSort(){
+	    	$new = $this->QUERY(
+	            "SELECT
+	                id_order_set,
+	                user_id
+	            from order_sets left join orders
+	            on order_id = id_order
+	            where
+	                orders.state = 'bin'
+	                and
+	                order_sets.sort_id >= 0;
+	        ");
+
+			if($newCount = count($new)){
+				$users = $this->QUERY(
+					"SELECT
+						user_id,
+						count(id_order_set) as order_count
+					from order_sets left join orders
+					on order_id = id_order
+					where
+						orders.state = 'bin'
+						and
+						order_sets.sort_id >= 0
+					order by user_id;
+				");
+
+				$qeue = [];
+				foreach($users as $user){
+					
+				}
+			}
+		}
 	}
