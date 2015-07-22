@@ -22,19 +22,21 @@
 
 				$set_a = new \Application\Test\Model\OrderSet();
 				$set_b = new \Application\Test\Model\OrderSet();
+				$set_c = new \Application\Test\Model\OrderSet();
 
 				$set_a->findBy_id_order_set($params['order_set_id_a']);
 				$set_b->findBy_id_order_set($params['order_set_id_b']);
-				if (!isset($set_a->id_order_set) ||!isset($set_b->id_order_set)){
-					return null;
+				$set_c->findBy_sort_id($set_b->sort_id+1);
+					for ($i = $set_b->sort_id+1;$set_c->sort_id < $set_a->sort_id;$i++){
+					$set_b->findBy_sort_id($i);
+					$set_c->sort_id += 1;
+
+					$set_c->UPDATE();
+					$set_c = $set_b;
 				}
-
-				$a = $set_a->sort_id;
-
-				$set_a->sort_id = $set_b->sort_id;
+				$set_b->findBy_id_order_set($params['order_set_id_b']);
+				$set_a->sort_id = $set_b->sort_id + 1;
 				$set_a->UPDATE();
-				$set_b->sort_id = $a;
-				$set_b->UPDATE();
 
 				return [
 					ApiConstants::$STATUS => ApiConstants::$SUCCESS

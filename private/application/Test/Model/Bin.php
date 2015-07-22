@@ -77,7 +77,7 @@ limit 1;
                 //Если нет, то создаем
                 $bin->user_id = \CO::AUTH()->who()->ID();
                 $bin->state = 'bin';
-
+                $bin->price = 0;
                 $bin->CREATE();
             }
 
@@ -85,7 +85,21 @@ limit 1;
             //Позиция
             $set = new \Application\Test\Model\OrderSet();
 
-            //Пытаемся добавить позицию          TODO: Проверить, НЕ занято ли!!!
+            //Проверка существования стола и его статуса
+
+            $setId = $set->QUERY("
+SELECT id_set
+FROM sets
+WHERE id_set = ?
+            ", [['i', $params['id_set']]]);
+
+            if (!count($setId)){
+                return [
+                    ApiConstants::$STATUS => ApiConstants::$ERROR,
+                    ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_BUSY_SET_STRING,
+                    ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_BUSY_SET_CODE
+                ];
+            }
 
             $setId = $set->QUERY("
 SELECT id_order_set
@@ -100,7 +114,7 @@ WHERE set_id = ?  and state <> 'delete'
                     ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_BUSY_SET_CODE
                 ];
             }
-
+            //Пытаемся добавить позицию
             $set->QUERY(
 "INSERT INTO order_sets(
     order_id,
@@ -115,31 +129,18 @@ WHERE set_id = ?  and state <> 'delete'
 
             ]);
 
-            //Забираем объект                   TODO: Проверить, что был создан
             $set->findBy_id_order_set(\CO::SQL()->iid());
-            $set->sort_id = $set->ID();
-            $set->UPDATE();
+            if (isset($set->id_order_set)){
+                $returnRequest = [
+                    'id_order_set' => $set->ID()
+                ];
+                return $returnRequest;
+            }
+            return null;
 
             /**
                                     ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ (insert id)
              */
-            $returnRequest = [
-                'id_order_set' => $set->ID()
-            ];
-
-            /*$this->QUERY("UPDATE orders
-                            SET price = price + (SELECT price
-                                                  FROM tables inner join sets on tables.id_table = sets.table_id
-                                                  WHERE id_set = ?)
-                            WHERE id_order = ?
-                            ",[
-                ['i',$params['id_set']],
-<<<<<<< HEAD
-                ['i',$bin[0]['id_order']]
-            ]);
-                ['i',$bin->ID()]
-            ]);*/
-            return $returnRequest;
         }
         if (\CO::AUTH()->unknown()) {
             return [
