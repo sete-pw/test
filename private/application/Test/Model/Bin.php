@@ -54,48 +54,61 @@ class Bin extends Order{
                 ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_PARAMS_CODE];
         }
         if (\CO::AUTH()->user()) {
-            //$order = new Order();
-            $bin = $this->QUERY("SELECT *
-                                    FROM orders
-                                    WHERE user_id =?
-                                    AND state = ?
-                                      ", [['i', \CO::AUTH()->who()->ID()], ['s', 'bin']]);
-            if (count($bin) == 0){
+            // Корзина
+            $bin = new \Application\Test\Model\Order();
+            
+            // Проверяем, есть ли корзина у пользователя
+            $binId = $bin->QUERY(
+"SELECT id_order
+from orders
+where
+    user_id = ?
+    and
+    state = 'bin'
+limit 1;
+            ", [
+                ['i', \CO::AUTH()->who()->ID()]
+            ]);
 
-                /*$order->user_id = \CO::AUTH()->who()->ID();
-                $order->state ='bin';
-                $order->price = 0;
-                $order->CREATE();*/
+            if(count($binId)){
+                //Если есть, то забираем ее
+                $bin->findBy_id_order($binId[0]['id_order']);
+            }else{
+                //Если нет, то создаем
+                $bin->user_id = \CO::AUTH()->who()->ID();
+                $bin->state = 'bin';
 
-                $this->QUERY("INSERT INTO orders
-                                    (user_id,state, price)
-                                    VALUES
-                                    (?,?,?)
-                                      ", [['i', \CO::AUTH()->who()->ID()], ['s', 'bin'],['i',0]]);
+                $bin->CREATE();
             }
 
-            //$orderSet = new OrderSet();
 
-            //$orderSet->findBy_set_id($params['id_set']);
-            //print_r($orderSet);
-            $maxSort = \CO::SQL()->query("SELECT MAX(sort_id) as m FROM order_sets")[0]['m'];
-            if (isset($maxSort[0]['m'])) $max = $maxSort[0]['m']; else $max = 1;
-            $this->QUERY("INSERT INTO order_sets
-                                    (order_id,set_id, sort_id,state)
-                                    VALUES
-                                    (?,?,?,?)
-                                      ",[
-                ['i',$bin[0]['id_order']],
-                ['i',$params['id_set']],
-                ['i', $max],
-                ['s','add']
+            //Позиция
+            $set = new \Application\Test\Model\OrderSet();
+
+            //Пытаемся добавить позицию          TODO: Проверить, НЕ занято ли!!!
+            $set->QUERY(
+"INSERT INTO order_sets(
+    order_id,
+    set_id,
+    state
+)values(
+    ?, ?, 'add'
+);
+            ", [
+                ['i', $bin->ID()],
+                ['i', (int)$params['id_set']]
+
             ]);
+
+            //Забираем объект                   TODO: Проверить, что был создан
+            $set->findBy_id_order_set(\CO::SQL()->iid());
+            
 
             /**
                                     ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ (insert id)
              */
             $returnRequest = [
-                'id_order_set' => \CO::SQL()->iid()
+                'id_order_set' => $set->ID()
             ];
 
             /*$this->QUERY("UPDATE orders
@@ -105,8 +118,11 @@ class Bin extends Order{
                             WHERE id_order = ?
                             ",[
                 ['i',$params['id_set']],
+<<<<<<< HEAD
                 ['i',$bin[0]['id_order']]
             ]);*/
+                ['i',$bin->ID()]
+            ]);
             return $returnRequest;
         }
         if (\CO::AUTH()->unknown()) {

@@ -89,10 +89,10 @@ limit 1;
 			$place = [];
 			$value = [];
 			$valueString = [];
-			foreach ($this->update as $key => $value) {
+			foreach ($this->update as $key => $v) {
 				$place[] = '`' . $key . '`';
 				$valueString[] = '?';
-				$value[] = ['s', $value];
+				$value[] = ['s', $v];
 			}
 			$this->sql->query("
 insert into `".$this->table."`
@@ -134,18 +134,19 @@ limit 1;
 					if($value !== $this->value[$key]){
 						$query .= ' `' . $key . '` = ? ';
 						$queryVal[] = ['s', $value];
+						
 						$this->value[$key] = $value;
 					}
 				}
 				if(count($queryVal)){
-					$queryVal[] = ['i', $this->ID];
+					$queryVal[] = ['i', $this->ID()];
 
 					$this->sql->query("
 		update `".$this->table."`
 		set
 			".$query."
 		where
-			`".$this->PID."` = ?
+			`".$this->PID()."` = ?
 		limit 1;
 					", $queryVal);
 				}
