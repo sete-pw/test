@@ -138,14 +138,14 @@ limit 1;
 					}
 				}
 				if(count($queryVal)){
-					$queryVal[] = ['i', $this->ID];
+					$queryVal[] = ['i', $this->ID()];
 
 					$this->sql->query("
 		update `".$this->table."`
 		set
 			".$query."
 		where
-			`".$this->PID."` = ?
+			`".$this->PID()."` = ?
 		limit 1;
 					", $queryVal);
 				}
