@@ -7,7 +7,7 @@ class Bin extends Order{
 
     function get(){
         if(\CO::AUTH()->user()){
-            $returnRequest = \CO::SQL()->query("SELECT SUM(price) as price, COUNT(set_id) as count
+            $returnRequest =  $this->QUERY("SELECT SUM(price) as price, COUNT(set_id) as count
                                               FROM orders inner join order_sets
                                               WHERE user_id = ? and orders.state = ?
                                               ",[['i',\CO::AUTH()->who()->ID()],['s', 'bin']]);
@@ -24,7 +24,7 @@ class Bin extends Order{
 
     function getList(){
         if (\CO::AUTH()->user()) {
-            $returnRequest = \CO::SQL()->query("SELECT
+            $returnRequest = $this->QUERY("SELECT
                                                 order_sets.id_order_set, id_table, CONCAT(tables.position,';',sets.position) as position , tables.price
                                                 FROM
                                                 order_sets inner join orders on orders.id_order = order_sets.order_id
@@ -54,28 +54,32 @@ class Bin extends Order{
                 ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_PARAMS_CODE];
         }
         if (\CO::AUTH()->user()) {
+            //$order = new Order();
             $bin = $this->QUERY("SELECT *
                                     FROM orders
                                     WHERE user_id =?
                                     AND state = ?
                                       ", [['i', \CO::AUTH()->who()->ID()], ['s', 'bin']]);
             if (count($bin) == 0){
+
+                /*$order->user_id = \CO::AUTH()->who()->ID();
+                $order->state ='bin';
+                $order->price = 0;
+                $order->CREATE();*/
+
                 $this->QUERY("INSERT INTO orders
                                     (user_id,state, price)
                                     VALUES
                                     (?,?,?)
                                       ", [['i', \CO::AUTH()->who()->ID()], ['s', 'bin'],['i',0]]);
-
-                $bin = $this->QUERY("SELECT *
-                                    FROM orders
-                                    WHERE user_id =?
-                                    AND state = ?
-                                      ", [['i', \CO::AUTH()->who()->ID()], ['s', 'bin']]);
             }
-            $maxArr = $this->QUERY("SELECT MAX(sort_id)+1 as m FROM order_sets");
-            $orderSet = new OrderSet();
-            $order->findBy_id_order_set();
-            if (isset($maxArr[0]['m'])) $max = $maxArr[0]['m']; else $max = 1;
+
+            //$orderSet = new OrderSet();
+
+            //$orderSet->findBy_set_id($params['id_set']);
+            //print_r($orderSet);
+            $maxSort = \CO::SQL()->query("SELECT MAX(sort_id) as m FROM order_sets")[0]['m'];
+            if (isset($maxSort[0]['m'])) $max = $maxSort[0]['m']; else $max = 1;
             $this->QUERY("INSERT INTO order_sets
                                     (order_id,set_id, sort_id,state)
                                     VALUES
@@ -94,7 +98,7 @@ class Bin extends Order{
                 'id_order_set' => \CO::SQL()->iid()
             ];
 
-            $this->QUERY("UPDATE orders
+            /*$this->QUERY("UPDATE orders
                             SET price = price + (SELECT price
                                                   FROM tables inner join sets on tables.id_table = sets.table_id
                                                   WHERE id_set = ?)
@@ -102,7 +106,7 @@ class Bin extends Order{
                             ",[
                 ['i',$params['id_set']],
                 ['i',$bin[0]['id_order']]
-            ]);
+            ]);*/
             return $returnRequest;
         }
         if (\CO::AUTH()->unknown()) {
