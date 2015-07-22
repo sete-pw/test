@@ -21,6 +21,10 @@
 				$out = new Controller\Page();
 				echo $out->shop();
 			});
+			$this->router->push('/^user$/', function($args){
+				$out = new Controller\Page();
+				echo $out->user();
+			});
 
 			$this->router->push('/^test$/', function($args){
 				$out = new Controller\Page();

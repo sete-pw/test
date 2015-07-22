@@ -9,15 +9,34 @@
 
 		function __construct($salt){
 			$this->salt = $salt;
-
-			$this->level = 0;
+			
 			$this->user = new \Application\Test\Model\User();
 
-			if(false !== $this->user->findBy_id_user((int)\CO::RE()->cookie['authid'])){
-				if($this->user->passwd === \CO::RE()->cookie['authsh']){
-					$this->level = $this->user->id_user != 1 ? 1 : 2;
-				}
+			if(
+				false === $this->user->findBy_id_user((int)\CO::RE()->cookie['authid'])
+				||
+				$this->user->passwd !== \CO::RE()->cookie['authsh']
+			){
+				unset($this->user);
 			}
+
+			$this->setLevel();
+		}
+
+		private function setLevel(){
+			if(!is_null($this->user)){
+				$this->level = $this->user->id_user != 1 ? 1 : 2;
+			}else{
+				$this->level = 0;
+			}
+		}
+
+		function auth($user){
+			$this->user = $user;
+			$this->setLevel();
+
+			\CO::RE()->cookie('authid', $user->id_user);
+			\CO::RE()->cookie('authsh', $user->passwd);
 		}
 
 		function login($email, $passwd){
@@ -28,8 +47,7 @@
 				&&
 				$user->passwd === $this->getUserHash($user->ID(), $passwd)
 			){
-				\CO::RE()->cookie('authid', $user->id_user);
-				\CO::RE()->cookie('authsh', $user->passwd);
+				$this->auth($user);
 			}
 		}
 		function logout(){
