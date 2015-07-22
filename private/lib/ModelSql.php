@@ -128,18 +128,19 @@ limit 1;
 
 		public function UPDATE(){
 			if(count($this->update)){
-				$query = '';
+				$query = [];
 				$queryVal = [];
 
 				foreach ($this->update as $key => $value) {
 					if($value !== $this->value[$key]){
-						$query .= ' `' . $key . '` = ? ';
+						$query[] = '`' . $key . '` = ?';
 						$queryVal[] = ['s', $value];
 						
 						$this->value[$key] = $value;
 					}
 				}
 				if(count($queryVal)){
+					$query = implode(', ', $query);
 					$queryVal[] = ['i', $this->ID()];
 					$this->sql->query("
 		update `".$this->table."`
