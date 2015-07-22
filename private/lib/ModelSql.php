@@ -89,10 +89,10 @@ limit 1;
 			$place = [];
 			$value = [];
 			$valueString = [];
-			foreach ($this->update as $key => $value) {
+			foreach ($this->update as $key => $v) {
 				$place[] = '`' . $key . '`';
 				$valueString[] = '?';
-				$value[] = ['s', $value];
+				$value[] = ['s', $v];
 			}
 			$this->sql->query("
 insert into `".$this->table."`
