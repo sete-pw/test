@@ -238,7 +238,6 @@ limit 1
             }
             $date = date('Y-m-d H:i:s');
             $bin->state = 'pay';
-            $bin->UPDATE();
             $bin->date_pay = $date;
             $bin->UPDATE();
 
