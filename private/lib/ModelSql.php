@@ -134,6 +134,7 @@ limit 1;
 					if($value !== $this->value[$key]){
 						$query .= ' `' . $key . '` = ? ';
 						$queryVal[] = ['s', $value];
+						
 						$this->value[$key] = $value;
 					}
 				}
