@@ -73,6 +73,8 @@ class Bin extends Order{
                                       ", [['i', \CO::AUTH()->who()->ID()], ['s', 'bin']]);
             }
             $maxArr = $this->QUERY("SELECT MAX(sort_id)+1 as m FROM order_sets");
+            $orderSet = new OrderSet();
+            $order->findBy_id_order_set();
             if (isset($maxArr[0]['m'])) $max = $maxArr[0]['m']; else $max = 1;
             $this->QUERY("INSERT INTO order_sets
                                     (order_id,set_id, sort_id,state)
