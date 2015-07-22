@@ -56,11 +56,11 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user">&nbsp;</span><?=\CO::AUTH()->who()->name?><span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/user"><span class="glyphicon glyphicon-cog"></span>&nbsp;Настройки</a></li>
+							<li><a href="/user"><span class="glyphicon glyphicon-user"></span>&nbsp;Мой аккаунт</a></li>
 					<?	
 							if(\CO::AUTH()->admin()){//если админ то добавить пункт меню
 					?>				
-					<li><a href="/admin"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Очередь</a></li>
+					<li><a href="/admin"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Очередь</a></li>
 					<?
 							}
 					?>
@@ -125,31 +125,31 @@
 					</h2>
 				</div>
 				<div class="modal-body">		
-					<?/*Номер заказа; Номер столика; номер места; положение (типа Третий ряд, четвертый стул); стоимость; кнопка Удалить*/?>
-					<table class="table table-striped table-hover ">
-						<thead>
-							<tr>
-								<th>Номер Заказа</th>
-								<th>Место</th>
-								<th>Стоимость</th>
-								<th>Операции</th>
-							</tr>
-						</thead>
-						<tbody id="bin_list">
-							
+					<div class="container-scroll">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>Номер Заказа</th>
+									<th>Место</th>
+									<th>Стоимость</th>
+									<th>Операции</th>
+								</tr>
+							</thead>
+							<tbody id="bin_list">
+								
 
 
-						</tbody>
-						<tbody>
-							<tr>
-								<td>ИТОГО</td>
-								<td></td>
-								<td>17500 руб.</td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table> 
-					
+							</tbody>
+							<tbody>
+								<tr>
+									<td>ИТОГО</td>
+									<td></td>
+									<td>17500 руб.</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table> 
+					</div>
 				</div>
 			</div>
 		</div>

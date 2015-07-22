@@ -43,7 +43,7 @@ chtml.bin = {
 		$('<td></td>').appendTo(row).html(data.price);
 		$('<td></td>').appendTo(row).append(
 			$('<a></a>').attr('title', 'Удалить').addClass('text-danger').addClass('bin-row-delete').append(
-				$('<span></span>').addClass('glyphicon').addClass('glyphicon-remove')
+				$('<span></span>').addClass('glyphicon').addClass('glyphicon-trash')
 			)
 		);
 		
