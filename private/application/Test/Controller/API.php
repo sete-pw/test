@@ -69,5 +69,9 @@
 		public static $ERROR_AUTH_CODE = 8;
 		public static $ERROR_AUTH__STRING = 'Not auth user';
 
+		public static $ERROR_NOT_FOUND_BIN_CODE = 9;
+		public static $ERROR_NOT_FOUND_BIN_STRING = 'Not found bin';
 
+		public static $ERROR_BUSY_SET_CODE = 10;
+		public static $ERROR_BUSY_SET_STRING = 'This set is busy';
 }

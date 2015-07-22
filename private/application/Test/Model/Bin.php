@@ -86,6 +86,21 @@ limit 1;
             $set = new \Application\Test\Model\OrderSet();
 
             //Пытаемся добавить позицию          TODO: Проверить, НЕ занято ли!!!
+
+            $setId = $set->QUERY("
+SELECT id_order_set
+FROM order_sets
+WHERE set_id = ?  and state <> 'delete'
+            ", [['i', $params['id_set']]]);
+
+            if (count($setId)){
+                return [
+                    ApiConstants::$STATUS => ApiConstants::$ERROR,
+                    ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_BUSY_SET_STRING,
+                    ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_BUSY_SET_CODE
+                ];
+            }
+
             $set->QUERY(
 "INSERT INTO order_sets(
     order_id,
@@ -102,7 +117,8 @@ limit 1;
 
             //Забираем объект                   TODO: Проверить, что был создан
             $set->findBy_id_order_set(\CO::SQL()->iid());
-            
+            $set->sort_id = $set->ID();
+            $set->UPDATE();
 
             /**
                                     ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ (insert id)
