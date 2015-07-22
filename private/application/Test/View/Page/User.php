@@ -16,7 +16,6 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">Профиль</a></li>
 		<li class=""><a href="#security" data-toggle="tab" aria-expanded="false">Безопасность</a></li>
-		<li class="disabled"><a>Статистика</a></li>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane fade active in" id="profile">

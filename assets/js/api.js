@@ -45,3 +45,18 @@ var Bin = {
 		});
 	}
 };
+
+var Order = {
+	getList: function(callback){
+		Api.query('Order.getList', callback, {});
+	}
+};
+
+var OrderSet = {
+	swap: function(orderSetId_A, orderSetId_B, callback){
+		Api.query('OrderSet.swap', callback, {
+			order_set_id_a: orderSetId_A,
+			order_set_id_b: orderSetId_B
+		});
+	}
+};

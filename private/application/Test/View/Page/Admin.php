@@ -8,9 +8,28 @@
 
 				\CO::RE()->PUSH('js', '/assets/js/admin.common.js');
 ?>
+<!-- Модальные окна -->
+<div class="modal fade" id="set_rowModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+				<h4 class="modal-title">Редактировать</h4>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
-<h1>ПАНЕЛЬ УПРАВЛЕНИЯ</h1>
-<table class="table" id="active_orders_list">
+<h1>
+	Управление заказами <span id="admin_title" class="text-primary"></span>
+</h1>
+
+<table class="table" id="admin_table">
 	<thead>
 		<tr>
 			<th>Номер Заказа</th>
@@ -22,29 +41,17 @@
 			<th>Операции</th>
 		</tr>
 	</thead>
-	<tbody id="order_container" class="sort">
+	<tbody id="admin_container" class="sort">
 
-		<tr id="item_1" data-id="1" data-sortid="3">
-			<td>1</td>
-			<td>ИмяКлиента</td>
-			<td>13</td>
-			<td>2</td>
-			<td>3 ряд, 4 место</td>
-			<td>2500 руб.</td>
-			<td>
-				<a href="#del_row" class="text-danger btn-delete" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a>
-				&nbsp; 
-				<a href="#set_rowModal" data-toggle="modal" class="text-primary" title="Редактировать"><span class="glyphicon glyphicon-file"></span></a> 
-			</td>
-		</tr>
-		
+
+
 	</tbody>
 	<tbody>
 		<tr>
 			<td>ИТОГО</td>
-			<td>1</td>
-			<td>2</td>
-			<td>3</td>
+			<td></td>
+			<td></td>
+			<td></td>
 			<td></td>
 			<td>7166 руб.</td>
 			<td></td>
