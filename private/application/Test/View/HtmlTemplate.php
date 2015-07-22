@@ -52,7 +52,7 @@
 					<? 
 						if(\CO::AUTH()->user()){
 					?>
-					<li><a href="#binModal" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Корзина&nbsp;<span class="badge">0</span></a></li>
+					<li><a href="#binModal" data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Корзина&nbsp;<span id="bin_counter" class="badge">...</span></a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user">&nbsp;</span><?=\CO::AUTH()->who()->name?><span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -120,7 +120,9 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-					<h2 class="modal-title"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Корзина</h2>
+					<h2 class="modal-title">
+						<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Корзина <span id="bin_title" class="text-primary"></span>
+					</h2>
 				</div>
 				<div class="modal-body">		
 					<?/*Номер заказа; Номер столика; номер места; положение (типа Третий ряд, четвертый стул); стоимость; кнопка Удалить*/?>
@@ -128,29 +130,20 @@
 						<thead>
 							<tr>
 								<th>Номер Заказа</th>
-								<th>Номер столика</th>
-								<th>Номер места</th>
-								<th>Положение</th>
+								<th>Место</th>
 								<th>Стоимость</th>
 								<th>Операции</th>
 							</tr>
 						</thead>
 						<tbody id="bin_list">
-							<tr data-item="4444">
-								<td>1488</td>
-								<td>13</td>
-								<td>2</td>
-								<td>3 ряд,<br> 4 место</td>
-								<td>2500 руб.</td>
-								<td><a class="text-danger bin-row-delete" title="Удалить"><span class="glyphicon glyphicon-remove"></span></a></td>
-							</tr>
+							
+
+
 						</tbody>
 						<tbody>
 							<tr>
 								<td>ИТОГО</td>
-								<td> </td>
-								<td> </td>
-								<td> </td>
+								<td></td>
 								<td>17500 руб.</td>
 								<td></td>
 							</tr>

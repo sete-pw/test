@@ -46,7 +46,7 @@ chtml.turn = {
 			$('<td></td>').html(data.price)
 		).append(
 			$('<td></td>').append(
-				$('<a></a>').addClass('admin-row-delete').addClass('text-primary').attr('title', 'Изменить').attr('data-toggle', 'modal').append(
+				$('<a></a>').addClass('admin-row-delete').addClass('text-primary').attr('title', 'Изменить').attr('data-toggle', 'modal').attr('href', '#admin_modal_order_edit').append(
 					$('<span></span>').addClass('glyphicon').addClass('glyphicon-file')
 				)
 			).append(

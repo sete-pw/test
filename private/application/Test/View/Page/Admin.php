@@ -9,12 +9,14 @@
 				\CO::RE()->PUSH('js', '/assets/js/admin.common.js');
 ?>
 <!-- Модальные окна -->
-<div class="modal fade" id="set_rowModal" role="dialog">
+<div class="modal fade" id="admin_modal_order_edit" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-				<h4 class="modal-title">Редактировать</h4>
+				<h2 class="modal-title">
+					Редактировать заказ
+				</h2>
 			</div>
 			<div class="modal-body">
 				

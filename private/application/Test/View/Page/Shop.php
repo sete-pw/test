@@ -6,7 +6,7 @@
 		function content($data){
 			if($data['accept']){
 
-				\CO::RE()->PUSH('js', '/assets/js/user.common.js');
+				\CO::RE()->PUSH('js', '/assets/js/shop.common.js');
 ?>
 <form id="order_form">
 

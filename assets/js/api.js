@@ -32,7 +32,7 @@ var Bin = {
 		Api.query('Bin.get', callback, {});
 	},
 	getList: function(callback){
-		Api.query('Bin.get', callback, {});
+		Api.query('Bin.getList', callback, {});
 	},
 	add: function(setId, callback){
 		Api.query('Bin.add', callback, {
