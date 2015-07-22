@@ -85,6 +85,13 @@ class Bin extends Order{
                 ['s','add']
             ]);
 
+            /**
+                                    ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ (insert id)
+             */
+            $returnRequest = [
+                'id_order_set' => \CO::SQL()->iid()
+            ];
+
             $this->QUERY("UPDATE orders
                             SET price = price + (SELECT price
                                                   FROM tables inner join sets on tables.id_table = sets.table_id
@@ -94,7 +101,7 @@ class Bin extends Order{
                 ['i',$params['id_set']],
                 ['i',$bin[0]['id_order']]
             ]);
-            return [ApiConstants::$STATUS => ApiConstants::$SUCCESS];
+            return $returnRequest;
         }
         if (\CO::AUTH()->unknown()) {
             return [
@@ -147,6 +154,11 @@ class Bin extends Order{
             if (!isset($countSets[0]['count'])){
                 $this->QUERY("DELETE FROM orders WHERE user_id =? and state = ?",[['i',\CO::AUTH()->who()->ID()],['s','bin']]);
             }
+
+            /**
+                                    TODO:   Должен возвращать ошибку, если такой позиции нет!!!
+             */
+
             return [
                 ApiConstants::$STATUS => ApiConstants::$SUCCESS
             ];

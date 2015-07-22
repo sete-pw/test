@@ -6,16 +6,29 @@
 
 		private function router(){
 			$this->router = new \Router();
-
+			/**
+			Pages
+			 */
 			$this->router->push('/^\/?$/', function($args){
 				$out = new Controller\Page();
 				echo $out->index();
 			});
+			$this->router->push('/^admin$/', function($args){
+				$out = new Controller\Page();
+				echo $out->admin();
+			});
+			$this->router->push('/^shop$/', function($args){
+				$out = new Controller\Page();
+				echo $out->shop();
+			});
+
 			$this->router->push('/^test$/', function($args){
 				$out = new Controller\Page();
 				echo $out->test();
 			});
-
+			/**
+			API
+			 */
 			$this->router->push('/^api\/v(?P<version>.*)\/(?P<class>.*)\.(?P<method>.*)/', function($args){
 				$out = new Controller\API();
 				echo $out->index([
@@ -24,7 +37,9 @@
 					'method' => $args['method']
 				]);
 			});
-
+			/**
+			Auth
+			 */
 			$this->router->push('/^login/', function($args){
 				\CO::AUTH()->login(
 					\CO::RE()->post['email'],
@@ -33,13 +48,14 @@
 
 				\CO::RE()->redirect('/');
 			});
-
 			$this->router->push('/^logout/', function($args){
 				\CO::AUTH()->logout();
 
 				\CO::RE()->redirect('/');
 			});
-
+			/**
+			404
+			 */
 			$this->router->push('/^.*/', function($args){
 				echo '404. Not found!';
 			});

@@ -12,6 +12,12 @@
 
 		function getList(){
 			$ReturnRequest =  $this->QUERY('SELECT id_table, position, price FROM tables',[],'id_table');
+
+			/**
+			 				TODO: ^^^^ Исключить те, в которых нет свободных мест!
+			 */
+
+
 			return $ReturnRequest;
 		}
 
