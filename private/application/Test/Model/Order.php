@@ -17,7 +17,7 @@ INNER JOIN order_sets ON orders.id_order = order_sets.order_id
 INNER JOIN sets ON sets.id_set = order_sets.set_id
 INNER JOIN tables ON sets.table_id = tables.id_table
 INNER JOIN users on users.id_user = orders.user_id
-WHERE orders.state = 'pay'
+WHERE order_sets.state = 'pay'
 ORDER BY sort_id desc");
 
 				return $returnRequest;
@@ -33,9 +33,26 @@ ORDER BY sort_id desc");
 		}
 
 		function complete($params){
-
+			if (!isset($params['id_order_set'])){
+				return [
+					ApiConstants::$STATUS => ApiConstants::$ERROR,
+					ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_PARAMS_STRING,
+					ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_PARAMS_CODE];
+			}
 			if (\CO::AUTH()->admin()) {
-				$order = new \Application\Test\Model;
+				$order = new \Application\Test\Model\OrderSet();
+				$orderId = $order->findBy_id_order_set($params['id_order_set']);
+
+				if ($orderId instanceof $order){
+					$orderId->state = 'delete';
+					$orderId->UPDATE();
+					return [
+						ApiConstants::$STATUS => ApiConstants::$SUCCESS
+					];
+				}else{
+					return null;
+				}
+
 			}
 			if (\CO::AUTH()->unknown() || \CO::AUTH()->user()) {
 				return [
