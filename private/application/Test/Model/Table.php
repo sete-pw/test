@@ -11,7 +11,18 @@
 		}
 
 		function getList(){
-			$ReturnRequest =  $this->QUERY('SELECT id_table, position, price FROM tables',[],'id_table');
+			$ReturnRequest =  $this->QUERY("
+SELECT
+id_table, tables.position, price
+FROM tables INNER JOIN sets ON tables.id_table = sets.table_id
+WHERE id_set NOT
+IN (
+SELECT set_id
+FROM order_sets
+WHERE state IN (
+'add', 'pay'
+)
+)",[],'id_table');
 
 			/**
 			 				TODO: ^^^^ Исключить те, в которых нет свободных мест!
