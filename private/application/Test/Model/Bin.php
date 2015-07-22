@@ -120,9 +120,9 @@ limit 1;
                 ['i',$params['id_set']],
 <<<<<<< HEAD
                 ['i',$bin[0]['id_order']]
-            ]);*/
-                ['i',$bin->ID()]
             ]);
+                ['i',$bin->ID()]
+            ]);*/
             return $returnRequest;
         }
         if (\CO::AUTH()->unknown()) {
