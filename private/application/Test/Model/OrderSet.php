@@ -12,7 +12,7 @@
 
 
 		function swap($params){
-			if (!isset($params['order_set_id_a']) && !isset($params['order_set_id_b'])){
+			if (!isset($params['order_set_id_a']) || !isset($params['order_set_id_b'])){
 				return [
 					ApiConstants::$STATUS => ApiConstants::$ERROR,
 					ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_PARAMS_STRING,

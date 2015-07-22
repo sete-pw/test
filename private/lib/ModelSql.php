@@ -32,6 +32,7 @@ where
 				$this->type[$column['COLUMN_NAME']] = $column['COLUMN_TYPE'];
 				$this->place[] = $column['COLUMN_NAME'];
 			}
+
 		}
 
 		public function QUERY($query, $params = null, $indexPlace = false){
@@ -140,7 +141,6 @@ limit 1;
 				}
 				if(count($queryVal)){
 					$queryVal[] = ['i', $this->ID()];
-
 					$this->sql->query("
 		update `".$this->table."`
 		set
@@ -151,6 +151,7 @@ limit 1;
 					", $queryVal);
 				}
 			}
+
 		}
 
 		public function VALUES(){

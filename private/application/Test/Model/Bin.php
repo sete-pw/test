@@ -211,4 +211,46 @@ WHERE set_id = ?  and state <> 'delete'
         }
     }
 
+    function pay(){
+        if (\CO::AUTH()->user()) {
+            $bin = new \Application\Test\Model\Order();
+            // Проверяем, есть ли корзина у пользователя
+            $binId = $this->QUERY(
+                "SELECT id_order
+from orders
+where
+    user_id = ?
+    and
+    state = 'bin'
+limit 1
+            ", [
+                ['i', \CO::AUTH()->who()->ID()]
+            ]);
+            if(count($binId)){
+                //Если есть, то забираем ее
+                $bin->findBy_id_order($binId[0]['id_order']);
+            }else{
+                return [
+                    ApiConstants::$STATUS => ApiConstants::$ERROR,
+                    ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_NOT_FOUND_BIN_STRING,
+                    ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_NOT_FOUND_BIN_CODE
+                ];
+            }
+            $date = date('Y-m-d H:i:s');
+            $bin->date_pay = $date;
+            $bin->state = 'pay';
+            $bin->UPDATE();
+            return [
+                ApiConstants::$STATUS =>ApiConstants::$SUCCESS
+            ];
+        }
+
+        if (\CO::AUTH()->unknown()) {
+            return [
+                ApiConstants::$STATUS => ApiConstants::$ERROR,
+                ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_AUTH__STRING,
+                ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_AUTH_CODE
+            ];
+        }
+    }
 }
