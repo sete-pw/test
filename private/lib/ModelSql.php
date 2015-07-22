@@ -35,7 +35,7 @@ where
 
 		}
 
-		public function QUERY($query, $params = null, $indexPlace = false){
+		public function QUERY($query = null, $params = null, $indexPlace = false){
 			return $this->sql->query($query, $params, $indexPlace);
 		}
 

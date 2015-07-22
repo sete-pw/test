@@ -42,9 +42,9 @@ chtml.turn = {
 		row = $('<tr></tr>').attr('id', 'admin_item_' + data.id_order_set).attr('data-id', data.id_order_set).attr('data-sortid', data.sort_id).append(
 			$('<td></td>').html(data.id_order_set)
 		).append(
-			$('<td></td>').html(data.user_id)
+			$('<td></td>').html(data.name)
 		).append(
-			$('<td></td>').html(data.position).append(
+			$('<td></td>').html(data.position.replace(';', ', ')).append(
 				$('<span></span>').html('&nbsp;')
 			).append(
 				$('<a></a>').addClass('admin-row-edit').addClass('text-primary').attr('title', 'Изменить').attr('data-toggle', 'modal').append(

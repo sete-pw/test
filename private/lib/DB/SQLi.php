@@ -2,6 +2,9 @@
 	namespace DB;
 
 	class SQLi{
+		private $lastStmt;
+		private $lastVars;
+
 		/**
 		 * Экземпляр соединения с базой данных
 		 * @var mysqli
@@ -17,7 +20,7 @@
 		 * @param  stmt Запрос
 		 * @return array
 		 */
-		private function stmtRowAssoc (&$stmt){
+		private function stmtRowAssoc ($stmt){
 			if($stmt instanceof \mysqli_stmt){
 				$data = mysqli_stmt_result_metadata($stmt);
 				if(false !== $data){
@@ -51,35 +54,55 @@
 		 * @param  string Поле для индекса массива
 		 * @return array
 		 */
-		public function query($query, $vars = null, $fieldArrayIndex = false){
-			$stmt = $this->connect->prepare($query);
-			
-			if(false === $stmt){
-				die('prepare() failed: ' . $this->connect->error);
-			}
-			
-			if(false !== $stmt){
-				if(false === is_null($vars) && count($vars)){
-					$types = array();
-					
-					foreach($vars as $k => $v){
-						$types[] = $v[0];
-					}
-					
-					$types = implode($types);
-					
-					$args = array(
-						$stmt,
-						$types
-					);
-					
-					foreach($vars as $k => $v){
-						$args[] = &$vars[$k][1];
-					}
+		public function query($query = null, $vars = null, $fieldArrayIndex = false){
+			$noExecute = false;
 
-					call_user_func_array(mysqli_stmt_bind_param, $args);
+			if(!is_null($query)){
+				if(is_array($query)){
+					$noExecute = true;
+					$query = $query[0];
 				}
-				
+
+				$stmt = $this->connect->prepare($query);
+				$this->lastStmt = $stmt;
+			
+				if(false === $stmt){
+					var_dump(['query' => $query, 'args_json' => json_encode($vars)]);
+					die('prepare() failed: ' . $this->connect->error);
+				}else{
+					if(false === is_null($vars) && count($vars)){
+						$types = array();
+						
+						foreach($vars as $k => $v){
+							$types[] = $v[0];
+						}
+						
+						$types = implode($types);
+						
+						$args = array(
+							$stmt,
+							$types
+						);
+						
+						$this->lastVars = [];
+
+						foreach($vars as $k => $v){
+							$this->lastVars[$k] = $v[1];
+							$args[] = &$this->lastVars[$k];
+						}
+
+						call_user_func_array(mysqli_stmt_bind_param, $args);
+					}
+				}
+			}else{
+				$stmt = $this->lastStmt;
+
+				foreach ($vars as $k => $v) {
+					$this->lastVars[$k] = $v;
+				}
+			}
+
+			if(!$noExecute){
 				$stmt->execute();
 				
 				$result = array();
@@ -90,10 +113,8 @@
 						$result[$row[$fieldArrayIndex]] = $row;
 					}
 				}
-				
+
 				return $result;
-			}else{
-				return false;
 			}
 		}
 		/**

@@ -76,11 +76,11 @@ ORDER BY sort_id desc");
 	            where
 	                orders.state = 'bin'
 	                and
-	                order_sets.sort_id >= 0;
+	                order_sets.sort_id = 0;
 	        ");
 
 			if($newCount = count($new)){
-				$users = $this->QUERY(
+				$user = $this->QUERY(
 					"SELECT
 						user_id,
 						count(id_order_set) as order_count
@@ -89,14 +89,59 @@ ORDER BY sort_id desc");
 					where
 						orders.state = 'bin'
 						and
-						order_sets.sort_id >= 0
-					order by user_id;
+						order_sets.sort_id = 0
+					group by user_id
+					order by order_count desc;
 				");
 
 				$qeue = [];
-				foreach($users as $user){
-					
+
+				if(count($user) > 1){
+					// Переносим первого пользователя (максимум)
+					foreach ($new as $key => $value){
+						if($value['user_id'] == $user[0]['user_id']){
+							$qeue[] = $value;
+							unset($new[$key]);
+						}
+					}
+					// Вполняем внедрение остальных пользователе
+					for($i = 1; $i < count($user); $i++){
+						// Вычисляем шаг
+						$step = count($qeue) / $user[$i]['order_count'];
+						$pos = 1;
+						// внедряем записи
+						foreach ($new as $key => $value){
+							if($value['user_id'] == $user[$i]['user_id']){
+								array_splice($qeue, (int)$pos, 0, [$value]);
+								$pos += $step+1;
+								unset($new[$key]);
+							}
+						}
+					}
+				}else{
+					$qeue = $new;
 				}
+
+				// Делаем prepare
+				$this->QUERY(
+					["UPDATE order_sets
+					set
+						sort_id = 1 + (select * from (select max(sort_id) from order_sets) a)
+					where
+						id_order_set = ?
+					limit 1;
+				"], [
+					['s', 0]
+				]);
+
+				// Выполняем для всех новых записей
+				foreach ($qeue as $e){
+					$this->QUERY(null, [
+						$e['id_order_set']
+					]);
+				}
+
+				//print_r($qeue);
 			}
 		}
 	}
