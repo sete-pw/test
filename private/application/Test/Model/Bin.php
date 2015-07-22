@@ -215,7 +215,7 @@ WHERE set_id = ?  and state <> 'delete'
         if (\CO::AUTH()->user()) {
             $bin = new \Application\Test\Model\Order();
             // Проверяем, есть ли корзина у пользователя
-            $binId = $this->QUERY(
+            $binId = $bin->QUERY(
                 "SELECT id_order
 from orders
 where
@@ -237,9 +237,17 @@ limit 1
                 ];
             }
             $date = date('Y-m-d H:i:s');
-            $bin->date_pay = $date;
             $bin->state = 'pay';
             $bin->UPDATE();
+            $bin->date_pay = $date;
+            $bin->UPDATE();
+
+            $this->QUERY("
+UPDATE order_sets
+SET state = 'pay'
+WHERE order_id = ?",[
+                ['i',$bin->ID()]
+            ]);
             return [
                 ApiConstants::$STATUS =>ApiConstants::$SUCCESS
             ];
