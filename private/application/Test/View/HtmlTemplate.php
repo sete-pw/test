@@ -121,7 +121,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
 					<h2 class="modal-title">
-						<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Корзина <span id="bin_title" class="text-primary"></span>
+						Корзина <span id="bin_title" class="text-primary"></span>
 					</h2>
 				</div>
 				<div class="modal-body">		

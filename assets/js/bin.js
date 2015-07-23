@@ -1,7 +1,6 @@
 chtml.bin = {
 	list: {},
 	title: {},
-	buttonAdd: {},
 
 	add: function(){
 		chtml.bin.buttonAdd.addClass('disabled');
@@ -85,11 +84,7 @@ chtml.bin = {
 		chtml.bin.list = $('#bin_list');
 		chtml.bin.title = $('#bin_title');
 		chtml.bin.counter = $('#bin_counter');
-		chtml.bin.buttonAdd = $('#order_add');
-
-		chtml.bin.buttonAdd.click(function(e){
-			chtml.bin.add();
-		});
+		
 		chtml.bin.list.on('click', '.bin-row-delete', function(){
 			chtml.bin.remove( $(this).closest('tr') );
 		});

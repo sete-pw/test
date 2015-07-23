@@ -65,6 +65,8 @@ chtml.set = {
 	select: -1,
 	selected: {},
 
+	buttonSelect: {},
+
 	data: {},
 
 	reset: function(){
@@ -79,7 +81,7 @@ chtml.set = {
 		}else{
 			chtml.set.selected = {};
 			chtml.set.title.html('Место');
-			chtml.bin.buttonAdd.addClass('disabled');
+			chtml.set.buttonSelect.addClass('disabled');
 		}
 	},
 	clear: function(){
@@ -120,5 +122,8 @@ chtml.set = {
 
 
 $(document).ready(function(){
+	chtml.set.buttonSelect = $('#order_add');
+	chtml.set.buttonSelect.click(chtml.bin.add);
+
 	chtml.table.update();
 });
