@@ -125,6 +125,14 @@ ORDER BY sort_id");
 
 				if ($orderId instanceof $order){
 					if ($orderId->state == 'pay'){
+						$this->QUERY("
+UPDATE order_sets
+SET sort_id = sort_id - 1
+WHERE sort_id > ?
+				",[
+							['i', $orderId->sort_id]
+						]);
+						$orderId->sort_id = 0;
 						$orderId->state = 'delete';
 						$orderId->UPDATE();
 						return [
