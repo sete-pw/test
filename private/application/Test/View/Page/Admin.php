@@ -125,15 +125,6 @@
 
 
 			</tbody>
-			<tbody>
-				<tr>
-					<td>ИТОГО</td>
-					<td></td>
-					<td></td>
-					<td>7166 руб.</td>
-					<td></td>
-				</tr>
-			</tbody>
 		</table>
 	</div>
 </div>
