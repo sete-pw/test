@@ -274,7 +274,7 @@ WHERE sort_id = 0
 
 				return [
 					ApiConstants::$STATUS => ApiConstants::$SUCCESS,
-					'count' => $returnRequest[0]['count']
+					ApiConstants::$RESPONSE => $returnRequest[0]
 				];
 			}
 			if (\CO::AUTH()->unknown() || \CO::AUTH()->user()) {
