@@ -85,7 +85,7 @@
 		function getList(){
 			if (\CO::AUTH()->admin()) {
 				$returnRequest = $this->QUERY(
-					"SELECT id_order_set, order_id, orders.price, table_id, set_id, user_id, users.name, CONCAT(tables.position,';',sets.position) as position
+					"SELECT id_order_set, users.name, CONCAT(tables.position,';',sets.position) as position, orders.price
 FROM orders
 INNER JOIN order_sets ON orders.id_order = order_sets.order_id
 INNER JOIN sets ON sets.id_set = order_sets.set_id
