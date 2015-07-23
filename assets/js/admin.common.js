@@ -172,6 +172,7 @@ chtml.turn = {
 
 		chtml.turn.list.on('click', '.admin-row-edit', function(){
 			chtml.turn.editId = $(this).closest('tr').attr('data-id');
+			chtml.table.update();
 			$('#admin_modal_order_edit').modal('show');
 		});
 		chtml.turn.list.on('click', '.admin-row-delete', function(){
