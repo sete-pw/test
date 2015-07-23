@@ -76,6 +76,8 @@ chtml.turn = {
 	},
 	deleteRow: function(){
 		chtml.turn.title.html('(удаляем)');
+		$('#admin_modal_order_delete').modal('hide');
+		chtml.turn.noUpdate = false;
 
 		OrderSet.complete(chtml.turn.editId, function(data){
 			if(data.status == 'success'){
@@ -91,15 +93,16 @@ chtml.turn = {
 	editRow: function(){
 		$('#admin_modal_order_edit').modal('hide');
 		chtml.turn.title.html('(изменяем)');
+		chtml.turn.noUpdate = false;
 
-		OrderSet.edit(chtml.turn.editId, chtml.set.select, function(data){
+		OrderSet.edit(chtml.turn.editId, chtml.set.selected.id_set, function(data){
 			if(data.status == 'success'){
 				chtml.turn.title.html('');
 				chtml.turn.list.children(
 					'.admin-item[data-id='+ chtml.turn.editId +']'
 				).children(
-					'td.admin-item-position'
-				).html(
+					'.admin-item-position'
+				).children('span:first-child').html(
 					chtml.table.selected.position
 					+ ', ' +
 					chtml.set.selected.position
@@ -116,7 +119,9 @@ chtml.turn = {
 		).append(
 			$('<td></td>').html(data.name)
 		).append(
-			$('<td class="admin-item-position"></td>').html(data.position.replace(';', ', ')).append(
+			$('<td></td>').addClass('admin-item-position').append(
+				$('<span></span>').html( data.position.replace(';', ', ') )
+			).append(
 				$('<span></span>').html('&nbsp;')
 			).append(
 				$('<a></a>').addClass('admin-row-edit').addClass('text-primary').attr('title', 'Изменить').attr('data-toggle', 'modal').append(
@@ -185,13 +190,15 @@ chtml.turn = {
 		}).disableSelection();
 
 		chtml.turn.list.on('click', '.admin-row-edit', function(){
+			chtml.turn.noUpdate = true;
 			chtml.turn.editId = $(this).closest('tr').attr('data-id');
 			chtml.table.update();
 			$('#admin_modal_order_edit').modal('show');
 		});
 		chtml.turn.list.on('click', '.admin-row-delete', function(){
+			chtml.turn.noUpdate = true;
 			chtml.turn.editId = $(this).closest('tr').attr('data-id');
-
+			$('#admin_modal_order_delete').modal('show');
 		});
 
 		chtml.turn.buttonEdit.click(chtml.turn.editRow);

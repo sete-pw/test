@@ -65,7 +65,7 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="admin_modal_order_edit" role="dialog">
+<div class="modal fade" id="admin_modal_order_delete" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -78,16 +78,14 @@
 				<div class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<h3>
-								Отметить заказ, как выполненный?
+							<h3 class="col-lg-offset-1">
+								Пометить заказ, как выполненный?
 							</h3>
 						</div>
 						<div class="form-group">
-							<div class="col-lg-10 col-lg-offset-2">
-								<button id="admin_button_edit_confirm" class="btn btn-primary">Да</button>
-							</div>
-							<div class="col-lg-10 col-lg-offset-2">
-								<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Отменить</button>
+							<div class="col-lg-offset-1">
+								<button id="admin_button_edit_confirm" class="btn btn-primary">Пометить</button>
+								<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Отмена</button>
 							</div>
 						</div>
 					</fieldset>
