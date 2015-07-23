@@ -38,6 +38,7 @@ var Bin = {
 	getList: function(callback){
 		Api.query('Bin.getList', callback, {});
 	},
+
 	add: function(setId, callback){
 		Api.query('Bin.add', callback, {
 			id_set: setId
@@ -47,6 +48,12 @@ var Bin = {
 		Api.query('Bin.remove', callback, {
 			id_order_set: orderSetId
 		});
+	},
+
+	pay: function(orderId, callback){
+		Api.query('Bin.pay', callback, {
+			order_id: orderId
+		});
 	}
 };
 
@@ -54,10 +61,24 @@ var Order = {
 	getList: function(callback){
 		Api.query('Order.getList', callback, {});
 	},
+
 	complete: function(orderSetId, callback){
 		Api.query('Order.complete', callback, {
 			id_order_set: orderSetId
 		});
+	},
+	edit: function(orderSetId, newTableId, newSetId, callback){
+		Api.query('Order.edit', callback, {
+			table_id: newTalbeId,
+			set_id: newSetId
+		});
+	},
+
+	getQeue: function(callback){
+		Api.query('Order.getQeue', callback, {});
+	},
+	includeQeue: function(callback){
+		Api.query('Order.includeQeue', callback, {});
 	}
 };
 
