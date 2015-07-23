@@ -91,7 +91,7 @@ INNER JOIN order_sets ON orders.id_order = order_sets.order_id
 INNER JOIN sets ON sets.id_set = order_sets.set_id
 INNER JOIN tables ON sets.table_id = tables.id_table
 INNER JOIN users on users.id_user = orders.user_id
-WHERE order_sets.state = 'pay'
+WHERE order_sets.state = 'pay' and sort_id > 0
 ORDER BY sort_id");
 
 				return $returnRequest;
@@ -129,7 +129,11 @@ ORDER BY sort_id");
 						ApiConstants::$STATUS => ApiConstants::$SUCCESS
 					];
 				}else{
-					return null;
+					return [
+						ApiConstants::$STATUS => ApiConstants::$ERROR,
+						ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_NOT_FOUND_RECORD_STRING,
+						ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_NOT_FOUND_RECORD_CODE
+					];
 				}
 
 			}
@@ -233,27 +237,53 @@ ORDER BY sort_id");
 			}
 			if (\CO::AUTH()->admin()) {
 				$order = new \Application\Test\Model\OrderSet();
-				$orderId = $order->findBy_id_order_set($params['id_order_set']);
+				$set = new \Application\Test\Model\Set();
+				$orderId = $order->QUERY("
+SELECT *
+FROM order_sets
+INNER JOIN sets ON order_sets.set_id = sets.id_set
+WHERE state = 'pay'
+AND sort_id >0
+AND id_order_set = ?
+				", [
+					['i', $params['id_order_set']]
+				]);
 
-				$order_busy = $order->findBy_set_id($params['id_set']);
+				$orderId2 = $order->QUERY("
+SELECT *
+FROM `sets`
+WHERE id_set = ? and id_set not in (SELECT set_id FROM order_sets WHERE state in ('pay','bin'))
+				", [
+					['i', $params['id_set']]
+				]);
 
-				if (count($order_busy->set_id)>0){
-					return [
-						ApiConstants::$STATUS => ApiConstants::$ERROR,
-						ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_BUSY_SET_STRING,
-						ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_BUSY_SET_CODE
-					];
+				if (count($orderId) == 0) {
+					if (count($orderId2) == 0) {
+						return [
+							ApiConstants::$STATUS => ApiConstants::$ERROR,
+							ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_NOT_FOUND_RECORD_STRING,
+							ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_NOT_FOUND_RECORD_CODE
+						];
+					}
 				}
-				if ($orderId instanceof $order){
+				else{
+					if (count($orderId2) == 0) {
+						return [
+							ApiConstants::$STATUS => ApiConstants::$ERROR,
+							ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_NOT_FOUND_SET_STRING,
+							ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_NOT_FOUND_SET_CODE
+						];
+					}
+				}
+
+
+
+					$orderId = $order->findBy_id_order_set($params['id_order_set']);
 					$orderId->set_id = $params['id_set'];
 					$orderId->UPDATE();
 					return [
 						ApiConstants::$STATUS => ApiConstants::$SUCCESS
 					];
-				}
-				else{
-					return null;
-				}
 			}
 			if (\CO::AUTH()->unknown() || \CO::AUTH()->user()) {
 				return [
