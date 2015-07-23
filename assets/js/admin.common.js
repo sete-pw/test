@@ -8,6 +8,8 @@ chtml.turn = {
 	buttonEdit: {},
 	editId: -1,
 
+	noUpdate: false,
+
 	data: {},
 
 	results: {},
@@ -137,6 +139,8 @@ chtml.turn = {
 	onSort: function(e, ui){
 		chtml.turn.title.html('(сохраняем)');
 		OrderSet.swap(chtml.turn.startPos +1, ui.item.index() +1, function(data){
+			chtml.turn.noUpdate = false;
+
 			if(data.status != 'success'){
 				chtml.turn.title.html('(ошибка сохранения!)');
 				chtml.turn.update();
@@ -148,7 +152,9 @@ chtml.turn = {
 
 	autoupdate: function(){
 		setTimeout(function(){
-			chtml.turn.update();
+			if(!chtml.turn.noUpdate){
+				chtml.turn.update();
+			}
 			chtml.turn.autoupdate();
 		}, 5000);
 	},
@@ -168,6 +174,7 @@ chtml.turn = {
 			update: chtml.turn.onSort,
 			start: function(event, ui) {
 				chtml.turn.startPos = ui.item.index();
+				chtml.turn.noUpdate = true;
 			},
 			helper: function(e, ui){
 				ui.children().each(function() {
