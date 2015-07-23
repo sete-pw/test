@@ -120,14 +120,24 @@ ORDER BY sort_id");
 			}
 			if (\CO::AUTH()->admin()) {
 				$order = new \Application\Test\Model\OrderSet();
+
 				$orderId = $order->findBy_id_order_set($params['id_order_set']);
 
 				if ($orderId instanceof $order){
-					$orderId->state = 'delete';
-					$orderId->UPDATE();
-					return [
-						ApiConstants::$STATUS => ApiConstants::$SUCCESS
-					];
+					if ($orderId->state == 'pay'){
+						$orderId->state = 'delete';
+						$orderId->UPDATE();
+						return [
+							ApiConstants::$STATUS => ApiConstants::$SUCCESS
+						];
+					}else
+					{
+						return [
+							ApiConstants::$STATUS => ApiConstants::$ERROR,
+							ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_NOT_FOUND_RECORD_STRING,
+							ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_NOT_FOUND_RECORD_CODE
+						];
+					}
 				}else{
 					return [
 						ApiConstants::$STATUS => ApiConstants::$ERROR,
