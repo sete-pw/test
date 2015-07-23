@@ -211,8 +211,21 @@ WHERE set_id = ?  and state <> 'delete'
         }
     }
 
-    function pay(){
-        if (\CO::AUTH()->user()) {
+    /**
+     * Перводит корзину в стостояние pay
+     * @param id_order
+     * @return array
+     */
+    function pay($params){
+
+        if (\CO::AUTH()->admin()) {
+            if (!isset($params['id_order'])){
+                return [
+                    ApiConstants::$STATUS => ApiConstants::$ERROR,
+                    ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_PARAMS_STRING,
+                    ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_PARAMS_CODE];
+            }
+
             $bin = new \Application\Test\Model\Order();
             // Проверяем, есть ли корзина у пользователя
             $binId = $bin->QUERY(
@@ -252,7 +265,7 @@ WHERE order_id = ?",[
             ];
         }
 
-        if (\CO::AUTH()->unknown()) {
+        if (\CO::AUTH()->unknown() || \CO::AUTH()->user()) {
             return [
                 ApiConstants::$STATUS => ApiConstants::$ERROR,
                 ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_AUTH__STRING,

@@ -165,11 +165,22 @@ ORDER BY sort_id");
 			if (\CO::AUTH()->admin()) {
 				$order = new \Application\Test\Model\OrderSet();
 				$orderId = $order->findBy_id_order_set($params['id_order_set']);
-				$order_busy = new \Application\Test\Model\OrderSet();
-				$order_busy
 
+				$order_busy = $order->findBy_set_id($params['id_set']);
+
+				if ($order_busy instanceof $order){
+					return [
+						ApiConstants::$STATUS => ApiConstants::$ERROR,
+						ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_BUSY_SET_STRING,
+						ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_BUSY_SET_CODE
+					];
+				}
 				if ($orderId instanceof $order){
-
+					$orderId->set_id = $params['id_set'];
+					$orderId->UPDATE();
+					return [
+						ApiConstants::$STATUS => ApiConstants::$SUCCESS
+					];
 				}
 				else{
 					return null;
