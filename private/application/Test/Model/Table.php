@@ -11,8 +11,8 @@
 		}
 
 		function getList(){
-			$ReturnRequest =  $this->QUERY("
-SELECT
+			$ReturnRequest =  $this->QUERY(
+"SELECT
 id_table, tables.position, price
 FROM tables INNER JOIN sets ON tables.id_table = sets.table_id
 WHERE id_set NOT
