@@ -21,14 +21,19 @@ chtml.turn = {
 			chtml.turn.clear();
 			chtml.turn.data = data;
 
-			$.each(data.response, function(key, value){
-				chtml.turn.addRow(value);
-			})
+			if(data.status == 'success'){
+				$.each(data.response, function(key, value){
+					chtml.turn.addRow(value);
+				});
+			}else{
+				chtml.turn.title.html('(ошибка)');
+			}
 		});
 	},
 
 	onDelete: function(id){
 		chtml.turn.title.html('(удаляем)');
+
 		Order.complete(id, function(data){
 			if(data.status != 'success'){
 				chtml.turn.title.html('(ошибка удаления)');

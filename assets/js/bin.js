@@ -67,13 +67,17 @@ chtml.bin = {
 		Bin.getList(function(data){
 			chtml.bin.clear();
 
-			$.each(data.response, function(key, value){
-				chtml.bin.addRow({
-					id_order_set: value.id_order_set,
-					position: value.position.replace(';', ', '),
-					price: value.price
+			if(data.status == 'success'){
+				$.each(data.response, function(key, value){
+					chtml.bin.addRow({
+						id_order_set: value.id_order_set,
+						position: value.position.replace(';', ', '),
+						price: value.price
+					});
 				});
-			});
+			}else{
+				chtml.bin.title.html('(ошибка)');
+			}
 		});
 	},
 

@@ -11,7 +11,8 @@ var Api = {
 
 			data: data,
 
-			success: callback
+			success: callback,
+			error: callback
 		});
 	}
 };
@@ -19,9 +20,12 @@ var Api = {
 var Table = {
 	getList: function(callback){
 		Api.query('Table.getList', callback, {});
-	},
-	getSetList: function(tableId, callback){
-		Api.query('Table.getSetList', callback, {
+	}
+};
+
+var Set = {
+	getList: function(tableId, callback){
+		Api.query('Set.getList', callback, {
 			table_id: tableId
 		});
 	}
@@ -58,10 +62,10 @@ var Order = {
 };
 
 var OrderSet = {
-	swap: function(sortId_A, sortId_B, callback){
+	swap: function(sortId_before, sortId_after, callback){
 		Api.query('OrderSet.swap', callback, {
-			sort_id_a: sortId_A,
-			sort_id_b: sortId_B
+			sort_id_before: sortId_before,
+			sort_id_after: sortId_after
 		});
 	}
 };

@@ -38,9 +38,14 @@ chtml.table = {
 	update: function(){
 		chtml.table.clear();
 		chtml.table.title.html('Загрузка...');
+
 		Table.getList(function(data){
-			chtml.table.data = data;
-			chtml.table.fillList();
+			if(data.status == 'success'){
+				chtml.table.data = data;
+				chtml.table.fillList();
+			}else{
+				chtml.table.title.html('Ошибка');
+			}
 		});
 	},
 
@@ -92,9 +97,14 @@ chtml.set = {
 	update: function(){
 		chtml.set.clear();
 		chtml.set.title.html('Загрузка...');
-		Table.getSetList(chtml.table.select, function(data){
-			chtml.set.data = data;
-			chtml.set.fillList();
+
+		Set.getList(chtml.table.select, function(data){
+			if(data.status == 'success'){
+				chtml.set.data = data;
+				chtml.set.fillList();
+			}else{
+				chtml.set.title.html('Ошибка');
+			}
 		});
 	},
 
