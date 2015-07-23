@@ -90,7 +90,7 @@ chtml.turn = {
 		$('#admin_modal_order_edit').modal('hide');
 		chtml.turn.title.html('(изменяем)');
 
-		OrderSet.edit(chtml.turn.editId, chtml.table.select, chtml.set.select, function(data){
+		OrderSet.edit(chtml.turn.editId, chtml.set.select, function(data){
 			if(data.status == 'success'){
 				chtml.turn.title.html('');
 				chtml.turn.list.children(

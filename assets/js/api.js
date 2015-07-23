@@ -67,10 +67,9 @@ var OrderSet = {
 			id_order_set: orderSetId
 		});
 	},
-	edit: function(orderSetId, newTableId, newSetId, callback){
+	edit: function(orderSetId, newSetId, callback){
 		Api.query('Order.edit', callback, {
 			order_set_id: orderSetId,
-			table_id: newTableId,
 			set_id: newSetId
 		});
 	},
