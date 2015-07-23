@@ -12,15 +12,15 @@
 
 
 		function swap($params){
-			if (!isset($params['sort_id_a']) || !isset($params['sort_id_b'])){
+			if (!isset($params['sort_id_before']) || !isset($params['sort_id_after'])){
 				return [
 					ApiConstants::$STATUS => ApiConstants::$ERROR,
 					ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_PARAMS_STRING,
 					ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_PARAMS_CODE];
 			}
 			if (\CO::AUTH()->admin()) {
-				$a = $params['sort_id_a'];
-				$b = $params['sort_id_b'];
+				$a = $params['sort_id_before'];
+				$b = $params['sort_id_after'];
 				if($a == $b || ($a*$b) <= 0){
 					return [
 						ApiConstants::$STATUS => ApiConstants::$ERROR,
