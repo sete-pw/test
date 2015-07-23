@@ -7,6 +7,7 @@
 
 		function __call($name, $args){
 			$class = "\\Application\\Test\\Model\\" . $args['0']['class'];
+			if (\CO::AUTH()->admin() || \CO::AUTH()->user()){
 			if(class_exists($class)){
 				$apiClass = new $class();
 
@@ -45,4 +46,12 @@
 				];
 			}
 		}
+		else{
+			$this->data = [
+				ApiConstants::$STATUS => ApiConstants::$ERROR,
+				ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_AUTH__STRING,
+				ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_AUTH_CODE
+			];
+		}
 	}
+}
