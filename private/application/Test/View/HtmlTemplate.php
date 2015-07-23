@@ -2,7 +2,16 @@
 	namespace Application\Test\View;
 
 	class HtmlTemplate extends \View{
+		private $data;
+
+		private function active($name){
+			if($this->data['active'] == $name){
+				echo 'active';
+			}
+		}
+
 		function content($data){
+			$this->data = $data;
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +53,8 @@
 
 			<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;Главная</a></li>
-					<li><a href="/shop"><span class="glyphicon glyphicon-barcode"></span>&nbsp;Заказать онлайн</a></li>
+					<li class="<? $this->active('index'); ?>"><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;Главная</a></li>
+					<li class="<? $this->active('shop'); ?>"><a href="/shop"><span class="glyphicon glyphicon-barcode"></span>&nbsp;Заказать онлайн</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<!-- ОДНО ИЗ ДВУХ ДОЛЖНО БЫТЬ -->
@@ -56,11 +65,11 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user">&nbsp;</span><?=\CO::AUTH()->who()->name?><span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/user"><span class="glyphicon glyphicon-user"></span>&nbsp;Мой аккаунт</a></li>
+							<li class="<? $this->active('user'); ?>"><a href="/user"><span class="glyphicon glyphicon-user"></span>&nbsp;Мой аккаунт</a></li>
 					<?	
 							if(\CO::AUTH()->admin()){//если админ то добавить пункт меню
 					?>				
-					<li><a href="/admin"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Очередь</a></li>
+					<li class="<? $this->active('admin'); ?>"><a href="/admin"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Очередь</a></li>
 					<?
 							}
 					?>

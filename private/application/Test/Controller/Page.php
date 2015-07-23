@@ -9,32 +9,31 @@
 		}
 
 		function test(){
-			$o = new \Application\Test\Model\Order();
-			$o->qeueNewSort();
+			
 		}
 
-		private function htmlOut($content = ''){
+		private function htmlOut($content = '', $active = ''){
 			$this->view = new \Application\Test\View\HtmlTemplate();
 			
-			echo $this->view->get(['content' => $content]);
+			echo $this->view->get(['content' => $content, 'active' => $active]);
 		}
 
 		function index($args = []){
-			$this->htmlOut();
+			$this->htmlOut('' , 'index');
 		}
 
 		function admin($args = []){
 			$this->model = new \Application\Test\Model\Page\Admin();
 			$this->view = new \Application\Test\View\Page\Admin();
 			
-			$this->htmlOut( $this->view->get( $this->model->data() ) );
+			$this->htmlOut( $this->view->get( $this->model->data() ) , 'admin' );
 		}
 
 		function shop($args = []){
 			$this->model = new \Application\Test\Model\Page\Shop();
 			$this->view = new \Application\Test\View\Page\Shop();
 			
-			$this->htmlOut( $this->view->get( $this->model->data() ) );
+			$this->htmlOut( $this->view->get( $this->model->data() ) , 'shop' );
 		}
 
 		function user($args = []){
@@ -45,7 +44,7 @@
 				$this->userEdit();
 			}
 			
-			$this->htmlOut( $this->view->get( $this->model->data() ) );
+			$this->htmlOut( $this->view->get( $this->model->data() ) , 'user' );
 		}
 		function userEdit(){
 			$this->model->edit([
