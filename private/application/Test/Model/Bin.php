@@ -11,7 +11,10 @@ class Bin extends Order{
                                               FROM orders inner join order_sets
                                               WHERE user_id = ? and orders.state = ?
                                               ",[['i',\CO::AUTH()->who()->ID()],['s', 'bin']]);
-            return $returnRequest[0];
+            return [
+                ApiConstants::$STATUS =>ApiConstants::$SUCCESS,
+                ApiConstants::$RESPONSE => $returnRequest[0]
+        ];
         }
         if(\CO::AUTH()->unknown()){
             return [

@@ -23,7 +23,10 @@ WHERE state IN (
 'add', 'pay'
 )
 )",[],'id_table');
-			return $ReturnRequest;
+			return [
+				ApiConstants::$STATUS =>ApiConstants::$SUCCESS,
+				ApiConstants::$RESPONSE => $ReturnRequest
+			];
 		}
 
 
