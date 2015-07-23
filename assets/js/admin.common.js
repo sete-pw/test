@@ -18,7 +18,7 @@ chtml.turn = {
 	},
 
 	update: function(){
-		chtml.turn.title.html('(обновляем)');
+		chtml.turn.title.html('&#9679;');
 
 		OrderSet.getList(function(data){
 			chtml.turn.clear();
@@ -33,13 +33,13 @@ chtml.turn = {
 			}
 		});
 
-		chtml.turn.includeButton.hide();
-
 		OrderSet.getQeue(function(data){
 			if(data.status == 'success'){
 				if(data.response.count > 0){
 					chtml.turn.includeButtonCount.html(data.response.count);
 					chtml.turn.includeButton.show();
+				}else{
+					chtml.turn.includeButton.hide();
 				}
 			}else{
 				chtml.turn.title.html('(ошибка)');
@@ -146,6 +146,13 @@ chtml.turn = {
 		});
 	},
 
+	autoupdate: function(){
+		setTimeout(function(){
+			chtml.turn.update();
+			chtml.turn.autoupdate();
+		}, 5000);
+	},
+
 	init: function(){
 		chtml.turn.list = $('#admin_container');
 		chtml.turn.title = $('#admin_title');
@@ -184,6 +191,9 @@ chtml.turn = {
 		chtml.turn.buttonEditConfirm.click(chtml.turn.deleteRow);
 
 		chtml.turn.includeButton.click(chtml.turn.include);
+
+		// Autoupdate
+		chtml.turn.autoupdate();
 
 		chtml.turn.update();
 	}
