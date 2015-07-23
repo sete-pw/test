@@ -77,7 +77,7 @@ chtml.set = {
 		if(id >= 0){
 			chtml.set.selected = chtml.set.data.response[chtml.set.select];
 			chtml.set.title.html( chtml.set.selected.position );
-			chtml.bin.buttonAdd.removeClass('disabled');
+			chtml.set.buttonSelect.removeClass('disabled');
 		}else{
 			chtml.set.selected = {};
 			chtml.set.title.html('Место');

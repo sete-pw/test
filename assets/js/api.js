@@ -52,25 +52,25 @@ var Bin = {
 
 	pay: function(orderId, callback){
 		Api.query('Bin.pay', callback, {
-			order_id: orderId
+			id_order: orderId
 		});
 	}
 };
 
 var OrderSet = {
 	getList: function(callback){
-		Api.query('Order.getList', callback, {});
+		Api.query('OrderSet.getList', callback, {});
 	},
 
 	complete: function(orderSetId, callback){
-		Api.query('Order.complete', callback, {
+		Api.query('OrderSet.complete', callback, {
 			id_order_set: orderSetId
 		});
 	},
 	edit: function(orderSetId, newSetId, callback){
-		Api.query('Order.edit', callback, {
-			order_set_id: orderSetId,
-			set_id: newSetId
+		Api.query('OrderSet.edit', callback, {
+			id_order_set: orderSetId,
+			id_set: newSetId
 		});
 	},
 	swap: function(sortId_before, sortId_after, callback){
@@ -81,9 +81,9 @@ var OrderSet = {
 	},
 
 	getQeue: function(callback){
-		Api.query('Order.getQeue', callback, {});
+		Api.query('OrderSet.getQeue', callback, {});
 	},
 	includeQeue: function(callback){
-		Api.query('Order.includeQeue', callback, {});
+		Api.query('OrderSet.includeQeue', callback, {});
 	}
 };

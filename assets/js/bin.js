@@ -3,7 +3,7 @@ chtml.bin = {
 	title: {},
 
 	add: function(){
-		chtml.bin.buttonAdd.addClass('disabled');
+		chtml.set.buttonSelect.addClass('disabled');
 
 		Bin.add(chtml.set.selected.id_set, function(data){
 			if(data.status == 'success'){
@@ -12,12 +12,14 @@ chtml.bin = {
 					position: chtml.table.selected.position + ', ' + chtml.set.selected.position,
 					price: chtml.table.selected.price
 				});
+
+
 			}else{
-				alert('Возникла ошибка добавления заказа!');
+				chtml.bin.title.html('(ошибка добавления)');
 			}
 
-			chtml.bin.buttonAdd.removeClass('disabled');
 			chtml.table.update();
+			chtml.set.buttonSelect.removeClass('disabled');
 		});
 	},
 	remove: function(tr){
@@ -29,7 +31,7 @@ chtml.bin = {
 		Bin.remove(id, function(data){
 			if(data.status != 'success'){
 				chtml.table.update();
-				alert('Ошибка удаления заказа!');
+				chtml.bin.title.html('(ошибка удаления)');
 			}
 		});
 	},
