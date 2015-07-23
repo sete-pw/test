@@ -8,6 +8,9 @@
 			return $this->VALUES();
 		}
 
+		/**
+		 * Получает список оплаченных заказов
+		 */
 		function getList(){
 			if (\CO::AUTH()->admin()) {
 				$returnRequest = $this->QUERY(
@@ -32,6 +35,11 @@ ORDER BY sort_id");
 			}
 		}
 
+		/**
+		 * Закрывает заказ
+		 * @param int Id заказа
+		 * @return status
+		 */
 		function complete($params){
 			if (!isset($params['id_order_set'])){
 				return [
@@ -142,6 +150,37 @@ ORDER BY sort_id");
 				}
 
 				//print_r($qeue);
+			}
+		}
+
+
+
+		function edit($params){
+			if (!isset($params['id_order_set']) || !isset($params['id_set'])){
+				return [
+					ApiConstants::$STATUS => ApiConstants::$ERROR,
+					ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_PARAMS_STRING,
+					ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_PARAMS_CODE];
+			}
+			if (\CO::AUTH()->admin()) {
+				$order = new \Application\Test\Model\OrderSet();
+				$orderId = $order->findBy_id_order_set($params['id_order_set']);
+				$order_busy = new \Application\Test\Model\OrderSet();
+				$order_busy
+
+				if ($orderId instanceof $order){
+
+				}
+				else{
+					return null;
+				}
+			}
+			if (\CO::AUTH()->unknown() || \CO::AUTH()->user()) {
+				return [
+					ApiConstants::$STATUS => ApiConstants::$ERROR,
+					ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_AUTH__STRING,
+					ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_AUTH_CODE
+				];
 			}
 		}
 	}
