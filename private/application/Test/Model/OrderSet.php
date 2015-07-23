@@ -269,7 +269,7 @@ ORDER BY sort_id");
 				$returnRequest = $this->QUERY("
 SELECT COUNT(sort_id) as 'count'
 FROM order_sets
-WHERE sort_id = 0
+WHERE sort_id = 0 and state = 'pay'
 				");
 
 				return [

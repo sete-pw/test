@@ -23,9 +23,8 @@
 						}
 						else {
 							$this->data = [
-								ApiConstants::$STATUS => ApiConstants::$ERROR,
-								ApiConstants::$ERROR_MESSAGE => ApiConstants::$ERROR_NOT_FOUND_RECORD_STRING,
-								ApiConstants::$ERROR_CODE => ApiConstants::$ERROR_NOT_FOUND_RECORD_CODE
+								ApiConstants::$STATUS => ApiConstants::$SUCCESS,
+								ApiConstants::$RESPONSE => []
 							];
 						}
 					}
