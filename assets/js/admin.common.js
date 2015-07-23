@@ -6,15 +6,12 @@ chtml.turn = {
 	editId: -1,
 
 	data: {},
-	sort: [],
-	sortBefore: [],
 
 	results: {},
 
 	clear: function(){
 		chtml.turn.list.html('');
 		chtml.turn.title.html('');
-		chtml.turn.sortBefore = [];
 	},
 
 	update: function(){
@@ -30,8 +27,16 @@ chtml.turn = {
 		});
 	},
 
-	onDelete: function(){
-												//TODO
+	onDelete: function(id){
+		chtml.turn.title.html('(удаляем)');
+		Order.complete(id, function(data){
+			if(data.status != 'success'){
+				chtml.turn.title.html('(ошибка удаления)');
+				chtml.turn.update();
+			}else{
+				chtml.turn.title.html('');
+			}
+		});
 	},
 
 	editRow: function(){
@@ -62,32 +67,11 @@ chtml.turn = {
 		);
 
 		row.appendTo(chtml.turn.list);
-		chtml.turn.sortBefore.push(row.attr('data-id'));
 	},
 
 	onSort: function(e, ui){
-		chtml.turn.sort = [];
-
-		$.each(chtml.turn.list.children('tr'), function(key, value){
-			row = $(value);
-			chtml.turn.sort[key] = row.attr('data-id');
-		});
-
-		ida = 0;
-		idb = 0;
-
-		for(i = 0; i < chtml.turn.sort.length; i++){
-			if(chtml.turn.sortBefore[i] != chtml.turn.sort[i]){
-				ida = chtml.turn.sort[i];
-				if(i>0){
-					ida = chtml.turn.sort[i-1];
-				}
-				break;
-			}
-		}
-
-		chtml.turn.title.html('(сохраняем)'); 
-		OrderSet.swap(ida, idb, function(data){
+		chtml.turn.title.html('(сохраняем)');
+		OrderSet.swap(chtml.turn.startPos +1, ui.item.index() +1, function(data){
 			if(data.status != 'success'){
 				chtml.turn.title.html('(ошибка сохранения!)');
 				chtml.turn.update();
@@ -95,8 +79,6 @@ chtml.turn = {
 				chtml.turn.title.html('');
 			}
 		});
-
-		chtml.turn.sortBefore = chtml.turn.sort;
 	},
 
 	init: function(){
@@ -107,6 +89,9 @@ chtml.turn = {
 
 		$("#admin_table tbody.sort").sortable({
 			update: chtml.turn.onSort,
+			start: function(event, ui) {
+				chtml.turn.startPos = ui.item.index();
+			},
 			helper: function(e, ui){
 				ui.children().each(function() {
 					$(this).width($(this).width());
@@ -118,7 +103,12 @@ chtml.turn = {
 		chtml.turn.list.on('click', '.admin-row-edit', function(){
 			chtml.turn.editId = $(this).closest('tr').attr('data-id');
 			$('#admin_modal_order_edit').modal('show');
-		})
+		});
+		chtml.turn.list.on('click', '.admin-row-delete', function(){
+			tr = $(this).closest('tr');
+			chtml.turn.onDelete(tr.attr('data-id'));
+			tr.remove();
+		});
 
 		chtml.turn.buttonEdit.click(chtml.turn.editRow);
 
